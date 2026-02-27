@@ -1,0 +1,32 @@
+{
+  "scenario_id": "youcef_mvp",
+  "title": "TEST - Scénario Youcef",
+  "start_node": "node_001",
+  "nodes": {
+	"node_001": {
+	  "text": "[PLACEHOLDER] Situation initiale : L'IA vient de générer un code complet mais vous ne comprenez pas sa logique. Que faites-vous ?",
+	  "options": [
+		{
+		  "text": "[CHOIX A] Je valide le code tel quel (Rapide).",
+		  "next_node": "node_002",
+		  "impact_human_core": -10,
+		  "impact_ai_synergy": 20
+		},
+		{
+		  "text": "[CHOIX B] Je prends 2h pour réécrire et comprendre (Lent).",
+		  "next_node": "node_003",
+		  "impact_human_core": 20,
+		  "impact_ai_synergy": -10
+		}
+	  ]
+	},
+	"node_002": {
+	  "text": "[PLACEHOLDER] Fin A : Le projet est livré à l'heure, mais un bug critique survient en prod.",
+	  "options": []
+	},
+	"node_003": {
+	  "text": "[PLACEHOLDER] Fin B : Vous êtes en retard, mais vous maîtrisez l'architecture. Votre boss vous félicite.",
+	  "options": []
+	}
+  }
+}

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c6strxav2k7me"]
+
+[ext_resource type="Script" uid="uid://clc3i6rh2nkhg" path="res://Scripts/Utils/ScenarioParser.gd" id="1_xnajp"]
+
+[node name="Control" type="Control" unique_id=21478466]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 75.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xnajp")
