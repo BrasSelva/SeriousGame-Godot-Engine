@@ -15,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wt1h4")
 
-[node name="ScoreLabel" type="Label" parent="." unique_id=658682473]
+[node name="LabelBilan" type="Label" parent="." unique_id=658682473]
 layout_mode = 0
 offset_left = 86.0
 offset_top = 5.0

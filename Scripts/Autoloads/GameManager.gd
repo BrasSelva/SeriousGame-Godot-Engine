@@ -1,13 +1,22 @@
 extends Node
 
-# Variables Globales (Accessibles partout via GameManager.human_score)
-var human_core_score: int = 50
-var ai_synergy_score: int = 50
-var current_persona: String = "" # Ex: "Youcef", "Marc", "Alyssa"
+var human_score: int = 50
+var ai_score: int = 50
+var quality_score: int = 50
+var time_left: int = 4 # Youcef commence avec 4 heures
 
-# Fonction pour mettre à jour les scores
-func update_scores(human_delta: int, ai_delta: int):
-	# clamp permet de garder le score entre 0 et 100
-	human_core_score = clamp(human_core_score + human_delta, 0, 100)
-	ai_synergy_score = clamp(ai_synergy_score + ai_delta, 0, 100)
-	print("Scores MAJ : Human=", human_core_score, " AI=", ai_synergy_score)
+func update_youcef_stats(h_delta, ai_delta, q_delta, t_delta):
+	human_score = clamp(human_score + h_delta, 0, 100)
+	ai_score = clamp(ai_score + ai_delta, 0, 100)
+	quality_score = clamp(quality_score + q_delta, 0, 100)
+	time_left -= t_delta
+	
+	print("MAJ Stats - Humain:", human_score, " AI:", ai_score, " Qualité:", quality_score, " Temps restant:", time_left)
+
+var unlocked_skills: Array = [] # Liste des compétences obtenues
+
+# Fonction pour ajouter une compétence
+func unlock_skill(skill_name: String):
+	if not unlocked_skills.has(skill_name):
+		unlocked_skills.append(skill_name)
+		print("🎯 Compétence débloquée : ", skill_name)

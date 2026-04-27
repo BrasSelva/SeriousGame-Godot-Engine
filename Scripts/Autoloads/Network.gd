@@ -30,7 +30,8 @@ func send_score_to_db(user_id: String, scores: Dictionary):
 
 func _on_request_completed(result, response_code, headers, body):
 	print("Réponse Supabase : ", response_code)
-	# Nettoyage du noeud HTTPRequest
-	var sender = get_tree().root.find_child("HTTPRequest", true, false)
-	if sender:
-		sender.queue_free()
+	if response_code == 201 or response_code == 200:
+		print("✅ Données enregistrées avec succès !")
+	else:
+		print("❌ Échec de l'envoi. Code : ", response_code)
+		print("Détail erreur : ", body.get_string_from_utf8())

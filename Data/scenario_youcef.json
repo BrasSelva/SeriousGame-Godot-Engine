@@ -1,31 +1,47 @@
 {
-  "scenario_id": "youcef_mvp",
-  "title": "TEST - Scénario Youcef",
-  "start_node": "node_001",
   "nodes": {
-	"node_001": {
-	  "text": "[PLACEHOLDER] Situation initiale : L'IA vient de générer un code complet mais vous ne comprenez pas sa logique. Que faites-vous ?",
+	"start": {
+	  "text": "MISSION : Affiche Festival Neo-Jazz. Vous avez 4h.",
 	  "options": [
 		{
-		  "text": "[CHOIX A] Je valide le code tel quel (Rapide).",
-		  "next_node": "node_002",
-		  "impact_human_core": -10,
-		  "impact_ai_synergy": 20
-		},
-		{
-		  "text": "[CHOIX B] Je prends 2h pour réécrire et comprendre (Lent).",
-		  "next_node": "node_003",
-		  "impact_human_core": 20,
-		  "impact_ai_synergy": -10
+		  "text": "Lancer Production IA Rapide",
+		  "time_cost": 1,
+		  "next_node": "echec_client"
 		}
 	  ]
 	},
-	"node_002": {
-	  "text": "[PLACEHOLDER] Fin A : Le projet est livré à l'heure, mais un bug critique survient en prod.",
-	  "options": []
+	"echec_client": {
+	  "text": "LE CLIENT : 'C'est trop froid !' Vous devez débloquer une compétence dans l'Arbre.",
+	  "options": [
+		{
+		  "text": "Aller à l'Arbre de Compétences",
+		  "next_node": "arbre_competences"
+		}
+	  ]
 	},
-	"node_003": {
-	  "text": "[PLACEHOLDER] Fin B : Vous êtes en retard, mais vous maîtrisez l'architecture. Votre boss vous félicite.",
+	"arbre_competences": {
+	  "text": "ARBRE : Comment redonner de l'émotion ?",
+	  "options": [
+		{
+		  "text": "REPONSE B : Ajouter des textures imparfaites.",
+		  "unlock_skill": "direction_artistique",
+		  "next_node": "retour_mission"
+		}
+	  ]
+	},
+	"retour_mission": {
+	  "text": "Vous avez débloqué 'Direction Artistique'. Voulez-vous finaliser l'affiche ?",
+	  "options": [
+		{
+		  "text": "Finaliser avec Symbiose (Requis: Dir. Art.)",
+		  "condition_skill": "direction_artistique",
+		  "impact_quality": 95,
+		  "next_node": "succes_final"
+		}
+	  ]
+	},
+	"succes_final": {
+	  "text": "SUCCÈS ! L'affiche est magnifique.",
 	  "options": []
 	}
   }

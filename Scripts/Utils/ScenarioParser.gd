@@ -7,39 +7,29 @@ var scenario_data: Dictionary = {}
 @onready var choices_container = $ChoicesContainer
 
 func _ready():
-	print("--- 1. LE SCRIPT DÉMARRE BIEN ! ---")
-	story_text.text = "Chargement en cours..."
-	
-	if load_scenario_from_file(SCENARIO_PATH):
-		print("--- 4. JSON CHARGÉ AVEC SUCCÈS ---")
-		afficher_noeud("node_001")
-	else:
-		print("--- ERREUR CRITIQUE AU CHARGEMENT ---")
+	# Charge bien le fichier Youcef
+	scenario_data = load_scenario_from_file("res://Data/scenario_youcef.json")	# Appel du TOUT PREMIER noeud défini dans ton JSON
+	afficher_noeud("start")
 
-func load_scenario_from_file(file_path: String) -> bool:
+func load_scenario_from_file(file_path: String) -> Dictionary:
 	print("--- 2. Recherche du fichier à : ", file_path)
 	if not FileAccess.file_exists(file_path):
 		print("❌ ERREUR : Fichier introuvable !")
-		story_text.text = "ERREUR : Fichier introuvable à " + file_path
-		return false
+		return {} # Renvoie un dictionnaire vide si erreur
 		
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	var content = file.get_as_text()
-	print("--- 3. Fichier trouvé. Tentative de lecture du JSON... ---")
 	
 	var json = JSON.new()
 	var error = json.parse(content)
-	
 	if error == OK:
-		scenario_data = json.data
-		return true
+		print("✅ JSON chargé avec succès !")
+		return json.data # Renvoie les données du scénario
 	else:
-		print("❌ ERREUR JSON : ", json.get_error_message(), " à la ligne ", json.get_error_line())
-		story_text.text = "ERREUR DANS LE TEXTE DU FICHIER JSON (voir console)"
-		return false
+		print("❌ ERREUR de lecture JSON")
+		return {}
 
 func afficher_noeud(node_id: String):
-	print("--- 5. Affichage du noeud : ", node_id, " ---")
 	for child in choices_container.get_children():
 		child.queue_free()
 		
@@ -48,15 +38,31 @@ func afficher_noeud(node_id: String):
 		return
 		
 	var current_node = scenario_data["nodes"][node_id]
+	
+	# Mise à jour des Labels (SORTIS de la boucle for)
+	$HBoxContainer/LabelHumain.text = "Humain: " + str(GameManager.human_score) + "%"
+	$HBoxContainer/LabelAI.text = "IA: " + str(GameManager.ai_score) + "%"
+	$HBoxContainer/LabelTemps.text = "Temps: " + str(GameManager.time_left) + "h"
+	
+	# Effet machine à écrire
 	story_text.text = current_node["text"]
+	story_text.visible_characters = 0
+	var tween = create_tween()
+	var vitesse = 0.03
+	var temps_total = current_node["text"].length() * vitesse
+	tween.tween_property(story_text, "visible_characters", current_node["text"].length(), temps_total)
+	
 	var options = current_node["options"]
 	
 	if options.size() == 0:
-		print("--- FIN DE L'HISTOIRE ---")
+		await get_tree().create_timer(2.0).timeout # On laisse le temps de lire le texte final
 		get_tree().change_scene_to_file("res://Scenes/Core/Bilan.tscn")
 		return
-	
+		
 	for opt in options:
+		# SI l'option demande une compétence QUE l'on n'a pas, on ne crée pas le bouton
+		if opt.has("condition_skill") and not GameManager.unlocked_skills.has(opt["condition_skill"]):
+			continue # On passe à l'option suivante sans créer ce bouton
 		var btn = Button.new()
 		btn.text = opt["text"]
 		btn.custom_minimum_size = Vector2(0, 50) 
@@ -64,5 +70,17 @@ func afficher_noeud(node_id: String):
 		choices_container.add_child(btn)
 
 func _on_choice_made(opt: Dictionary):
-	GameManager.update_scores(opt["impact_human_core"], opt["impact_ai_synergy"])
+	# On débloque la compétence si le JSON le demande
+	if opt.has("unlock_skill"):
+		GameManager.unlock_skill(opt["unlock_skill"])
+	# On récupère les valeurs du JSON ou 0 si elles n'existent pas
+	var h_impact = opt.get("impact_human_core", 0)
+	var ai_impact = opt.get("impact_ai_synergy", 0)
+	var q_impact = opt.get("impact_quality", 0)
+	var t_spent = opt.get("time_cost", 0)
+	
+	# On met à jour le GameManager (On va créer cette fonction juste après)
+	GameManager.update_youcef_stats(h_impact, ai_impact, q_impact, t_spent)
+	
+	# On passe à la suite
 	afficher_noeud(opt["next_node"])
