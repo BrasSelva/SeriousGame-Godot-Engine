@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bmdady7p6v7y"]
+
+[ext_resource type="Script" uid="uid://btmmt8gdpmbp1" path="res://Scripts/Controllers/bilan.gd" id="1_wt1h4"]
+
+[node name="Bilan" type="Control" unique_id=652202860]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 14.0
+offset_right = 24.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wt1h4")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=658682473]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 5.0
+offset_right = 266.0
+offset_bottom = 61.0
+
+[node name="SendButton" type="Button" parent="." unique_id=1481918063]
+layout_mode = 0
+offset_left = 574.0
+offset_top = 389.0
+offset_right = 1050.0
+offset_bottom = 552.0
+text = "Envoyer les scores"

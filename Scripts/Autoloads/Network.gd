@@ -1,8 +1,8 @@
 extends Node
 
 # Configuration Supabase (À remplir avec tes clés du projet Supabase)
-const SUPABASE_URL = "https://TON_PROJET.supabase.co"
-const SUPABASE_KEY = "TA_CLE_ANON_PUBLIC"
+const SUPABASE_URL = "https://mvvfitflrigvbctboegx.supabase.co"
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im12dmZpdGZscmlndmJjdGJvZWd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyOTI0MTMsImV4cCI6MjA5Mjg2ODQxM30.LFw7QbIHiHltRs14FOmUd7n7ClLIH5zGVi3EANgOkpA"
 
 func send_score_to_db(user_id: String, scores: Dictionary):
 	var url = SUPABASE_URL + "/rest/v1/game_sessions"

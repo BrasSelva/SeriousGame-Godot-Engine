@@ -1,63 +1,68 @@
-extends Node
+extends Control
 
-# Chemin vers notre faux fichier de test
 const SCENARIO_PATH = "res://Data/scenario_youcef.json"
-
-# Variable qui va contenir tout le JSON une fois décodé
 var scenario_data: Dictionary = {}
 
-# On lance le test dès que la scène démarre
+@onready var story_text = $StoryText
+@onready var choices_container = $ChoicesContainer
+
 func _ready():
-	print("--- DÉMARRAGE DU TEST PARSER JSON ---")
-	var success = load_scenario_from_file(SCENARIO_PATH)
+	print("--- 1. LE SCRIPT DÉMARRE BIEN ! ---")
+	story_text.text = "Chargement en cours..."
 	
-	if success:
-		test_affichage_noeud("node_001")
+	if load_scenario_from_file(SCENARIO_PATH):
+		print("--- 4. JSON CHARGÉ AVEC SUCCÈS ---")
+		afficher_noeud("node_001")
+	else:
+		print("--- ERREUR CRITIQUE AU CHARGEMENT ---")
 
-
-# Fonction principale qui lit le fichier JSON
 func load_scenario_from_file(file_path: String) -> bool:
-	# 1. Vérifier si le fichier existe
+	print("--- 2. Recherche du fichier à : ", file_path)
 	if not FileAccess.file_exists(file_path):
-		print("ERREUR : Le fichier ", file_path, " n'existe pas !")
+		print("❌ ERREUR : Fichier introuvable !")
+		story_text.text = "ERREUR : Fichier introuvable à " + file_path
 		return false
 		
-	# 2. Ouvrir et lire le texte brut
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	var content = file.get_as_text()
-	file.close()
+	print("--- 3. Fichier trouvé. Tentative de lecture du JSON... ---")
 	
-	# 3. Transformer le texte brut en dictionnaire (JSON)
 	var json = JSON.new()
 	var error = json.parse(content)
 	
 	if error == OK:
 		scenario_data = json.data
-		print("SUCCÈS : Scénario chargé -> ", scenario_data["title"])
 		return true
 	else:
-		print("ERREUR JSON à la ligne ", json.get_error_line(), " : ", json.get_error_message())
+		print("❌ ERREUR JSON : ", json.get_error_message(), " à la ligne ", json.get_error_line())
+		story_text.text = "ERREUR DANS LE TEXTE DU FICHIER JSON (voir console)"
 		return false
 
-
-# Fonction pour simuler l'affichage d'un moment de l'histoire
-func test_affichage_noeud(node_id: String):
+func afficher_noeud(node_id: String):
+	print("--- 5. Affichage du noeud : ", node_id, " ---")
+	for child in choices_container.get_children():
+		child.queue_free()
+		
 	if not scenario_data.has("nodes") or not scenario_data["nodes"].has(node_id):
-		print("Erreur : Le noeud ", node_id, " n'existe pas.")
+		story_text.text = "ERREUR DE NOEUD"
 		return
 		
 	var current_node = scenario_data["nodes"][node_id]
-	
-	# Afficher le texte principal (Plus tard, ça ira dans le Label de Lydia)
-	print("\n[HISTOIRE] : ", current_node["text"])
-	
-	# S'il y a des choix, on les affiche (Plus tard, ça ira dans les Boutons)
+	story_text.text = current_node["text"]
 	var options = current_node["options"]
-	if options.size() > 0:
-		print("Choix possibles :")
-		for i in range(options.size()):
-			var opt = options[i]
-			print("  ", i + 1, ". ", opt["text"])
-			print("     (Impact : Human ", opt["impact_human_core"], " | AI ", opt["impact_ai_synergy"], ") -> Mène vers: ", opt["next_node"])
-	else:
-		print("--- FIN DU SCÉNARIO ---")
+	
+	if options.size() == 0:
+		print("--- FIN DE L'HISTOIRE ---")
+		get_tree().change_scene_to_file("res://Scenes/Core/Bilan.tscn")
+		return
+	
+	for opt in options:
+		var btn = Button.new()
+		btn.text = opt["text"]
+		btn.custom_minimum_size = Vector2(0, 50) 
+		btn.pressed.connect(_on_choice_made.bind(opt))
+		choices_container.add_child(btn)
+
+func _on_choice_made(opt: Dictionary):
+	GameManager.update_scores(opt["impact_human_core"], opt["impact_ai_synergy"])
+	afficher_noeud(opt["next_node"])
