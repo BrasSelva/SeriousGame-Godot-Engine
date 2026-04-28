@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cygxaeiw8pewc"]
+
+[ext_resource type="Script" uid="uid://6kmypjlqhda1" path="res://Scripts/Controllers/main_menu.gd" id="1_coy20"]
+
+[node name="MainMenu" type="Control" unique_id=568000348]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_coy20")
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1924915665]
+layout_mode = 0
+offset_left = 273.0
+offset_top = 31.0
+offset_right = 646.0
+offset_bottom = 128.0
+text = "\"You & AI : Le Simulateur\""
+
+[node name="PlayButton" type="Button" parent="." unique_id=1244368675]
+layout_mode = 0
+offset_left = 355.0
+offset_top = 156.0
+offset_right = 876.0
+offset_bottom = 295.0
+text = "JOUER"

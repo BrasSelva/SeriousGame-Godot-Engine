@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="YouAndAI_SeriousGame"
+run/main_scene="uid://cygxaeiw8pewc"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://crmirahdrsg1a"
 
@@ -24,6 +25,7 @@ Network="*uid://b2kbbaceqtesm"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [physics]
 

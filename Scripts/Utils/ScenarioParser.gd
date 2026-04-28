@@ -1,63 +1,86 @@
-extends Node
+extends Control
 
-# Chemin vers notre faux fichier de test
 const SCENARIO_PATH = "res://Data/scenario_youcef.json"
-
-# Variable qui va contenir tout le JSON une fois décodé
 var scenario_data: Dictionary = {}
 
-# On lance le test dès que la scène démarre
+@onready var story_text = $StoryText
+@onready var choices_container = $ChoicesContainer
+
 func _ready():
-	print("--- DÉMARRAGE DU TEST PARSER JSON ---")
-	var success = load_scenario_from_file(SCENARIO_PATH)
-	
-	if success:
-		test_affichage_noeud("node_001")
+	# Charge bien le fichier Youcef
+	scenario_data = load_scenario_from_file("res://Data/scenario_youcef.json")	# Appel du TOUT PREMIER noeud défini dans ton JSON
+	afficher_noeud("start")
 
-
-# Fonction principale qui lit le fichier JSON
-func load_scenario_from_file(file_path: String) -> bool:
-	# 1. Vérifier si le fichier existe
+func load_scenario_from_file(file_path: String) -> Dictionary:
+	print("--- 2. Recherche du fichier à : ", file_path)
 	if not FileAccess.file_exists(file_path):
-		print("ERREUR : Le fichier ", file_path, " n'existe pas !")
-		return false
+		print("❌ ERREUR : Fichier introuvable !")
+		return {} # Renvoie un dictionnaire vide si erreur
 		
-	# 2. Ouvrir et lire le texte brut
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	var content = file.get_as_text()
-	file.close()
 	
-	# 3. Transformer le texte brut en dictionnaire (JSON)
 	var json = JSON.new()
 	var error = json.parse(content)
-	
 	if error == OK:
-		scenario_data = json.data
-		print("SUCCÈS : Scénario chargé -> ", scenario_data["title"])
-		return true
+		print("✅ JSON chargé avec succès !")
+		return json.data # Renvoie les données du scénario
 	else:
-		print("ERREUR JSON à la ligne ", json.get_error_line(), " : ", json.get_error_message())
-		return false
+		print("❌ ERREUR de lecture JSON")
+		return {}
 
-
-# Fonction pour simuler l'affichage d'un moment de l'histoire
-func test_affichage_noeud(node_id: String):
+func afficher_noeud(node_id: String):
+	for child in choices_container.get_children():
+		child.queue_free()
+		
 	if not scenario_data.has("nodes") or not scenario_data["nodes"].has(node_id):
-		print("Erreur : Le noeud ", node_id, " n'existe pas.")
+		story_text.text = "ERREUR DE NOEUD"
 		return
 		
 	var current_node = scenario_data["nodes"][node_id]
 	
-	# Afficher le texte principal (Plus tard, ça ira dans le Label de Lydia)
-	print("\n[HISTOIRE] : ", current_node["text"])
+	# Mise à jour des Labels (SORTIS de la boucle for)
+	$HBoxContainer/LabelHumain.text = "Humain: " + str(GameManager.human_score) + "%"
+	$HBoxContainer/LabelAI.text = "IA: " + str(GameManager.ai_score) + "%"
+	$HBoxContainer/LabelTemps.text = "Temps: " + str(GameManager.time_left) + "h"
 	
-	# S'il y a des choix, on les affiche (Plus tard, ça ira dans les Boutons)
+	# Effet machine à écrire
+	story_text.text = current_node["text"]
+	story_text.visible_characters = 0
+	var tween = create_tween()
+	var vitesse = 0.03
+	var temps_total = current_node["text"].length() * vitesse
+	tween.tween_property(story_text, "visible_characters", current_node["text"].length(), temps_total)
+	
 	var options = current_node["options"]
-	if options.size() > 0:
-		print("Choix possibles :")
-		for i in range(options.size()):
-			var opt = options[i]
-			print("  ", i + 1, ". ", opt["text"])
-			print("     (Impact : Human ", opt["impact_human_core"], " | AI ", opt["impact_ai_synergy"], ") -> Mène vers: ", opt["next_node"])
-	else:
-		print("--- FIN DU SCÉNARIO ---")
+	
+	if options.size() == 0:
+		await get_tree().create_timer(2.0).timeout # On laisse le temps de lire le texte final
+		get_tree().change_scene_to_file("res://Scenes/Core/Bilan.tscn")
+		return
+		
+	for opt in options:
+		# SI l'option demande une compétence QUE l'on n'a pas, on ne crée pas le bouton
+		if opt.has("condition_skill") and not GameManager.unlocked_skills.has(opt["condition_skill"]):
+			continue # On passe à l'option suivante sans créer ce bouton
+		var btn = Button.new()
+		btn.text = opt["text"]
+		btn.custom_minimum_size = Vector2(0, 50) 
+		btn.pressed.connect(_on_choice_made.bind(opt))
+		choices_container.add_child(btn)
+
+func _on_choice_made(opt: Dictionary):
+	# On débloque la compétence si le JSON le demande
+	if opt.has("unlock_skill"):
+		GameManager.unlock_skill(opt["unlock_skill"])
+	# On récupère les valeurs du JSON ou 0 si elles n'existent pas
+	var h_impact = opt.get("impact_human_core", 0)
+	var ai_impact = opt.get("impact_ai_synergy", 0)
+	var q_impact = opt.get("impact_quality", 0)
+	var t_spent = opt.get("time_cost", 0)
+	
+	# On met à jour le GameManager (On va créer cette fonction juste après)
+	GameManager.update_youcef_stats(h_impact, ai_impact, q_impact, t_spent)
+	
+	# On passe à la suite
+	afficher_noeud(opt["next_node"])
