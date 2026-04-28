@@ -1,47 +1,59 @@
 {
   "nodes": {
 	"start": {
-	  "text": "MISSION : Affiche Festival Neo-Jazz. Vous avez 4h.",
+	  "text": "MISSION : Affiche Festival Jazz. Vous avez 4h. Vos jauges sont à 50%. Que faites-vous ?",
 	  "options": [
 		{
-		  "text": "Lancer Production IA Rapide",
+		  "text": "Tout déléguer à l'IA (Rapide)",
+		  "impact_human_core": -30,
+		  "impact_ai_synergy": 30,
+		  "impact_quality": 0,
 		  "time_cost": 1,
-		  "next_node": "echec_client"
+		  "next_node": "etape_2"
+		},
+		{
+		  "text": "Aller dans l'Arbre de Compétences",
+		  "next_node": "arbre_youcef"
 		}
 	  ]
 	},
-	"echec_client": {
-	  "text": "LE CLIENT : 'C'est trop froid !' Vous devez débloquer une compétence dans l'Arbre.",
+	"arbre_youcef": {
+	  "text": "Vous étudiez la 'Direction Artistique'. Cela prend du temps mais augmente votre score humain.",
 	  "options": [
 		{
-		  "text": "Aller à l'Arbre de Compétences",
-		  "next_node": "arbre_competences"
+		  "text": "Apprendre la Direction Artistique (-2h)",
+		  "unlock_skill": "dir_art",
+		  "impact_human_core": 20,
+		  "time_cost": 2,
+		  "next_node": "etape_2"
 		}
 	  ]
 	},
-	"arbre_competences": {
-	  "text": "ARBRE : Comment redonner de l'émotion ?",
+	"etape_2": {
+	  "text": "L'affiche est presque prête. Le client demande une touche d'émotion finale.",
 	  "options": [
 		{
-		  "text": "REPONSE B : Ajouter des textures imparfaites.",
-		  "unlock_skill": "direction_artistique",
-		  "next_node": "retour_mission"
-		}
-	  ]
-	},
-	"retour_mission": {
-	  "text": "Vous avez débloqué 'Direction Artistique'. Voulez-vous finaliser l'affiche ?",
-	  "options": [
+		  "text": "Appliquer un filtre IA (Risqué)",
+		  "impact_human_core": -20,
+		  "impact_quality": 40,
+		  "time_cost": 1,
+		  "next_node": "fin_echec"
+		},
 		{
-		  "text": "Finaliser avec Symbiose (Requis: Dir. Art.)",
-		  "condition_skill": "direction_artistique",
+		  "text": "Utiliser ma Direction Artistique (Éthique)",
+		  "condition_skill": "dir_art",
 		  "impact_quality": 95,
-		  "next_node": "succes_final"
+		  "time_cost": 1,
+		  "next_node": "fin_succes"
 		}
 	  ]
 	},
-	"succes_final": {
-	  "text": "SUCCÈS ! L'affiche est magnifique.",
+	"fin_succes": {
+	  "text": "SUCCÈS ! Qualité 95%. Symbiose parfaite.",
+	  "options": []
+	},
+	"fin_echec": {
+	  "text": "ÉCHEC. L'affiche est générique. Obsolescence.",
 	  "options": []
 	}
   }
