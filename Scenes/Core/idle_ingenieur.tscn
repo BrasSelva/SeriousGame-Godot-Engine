@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://d1emk4jdbcs6v"]
+
+[ext_resource type="Texture2D" uid="uid://bfwr3sbhjaup4" path="res://_Assets/Images/characters/ingenieur/idle/breath_00.png" id="1_orx38"]
+[ext_resource type="Texture2D" uid="uid://dacdx3qvj83sy" path="res://_Assets/Images/characters/ingenieur/idle/breath_01.png" id="2_0u861"]
+[ext_resource type="Texture2D" uid="uid://doqfruvi5mfm7" path="res://_Assets/Images/characters/ingenieur/idle/breath_02.png" id="3_clpdi"]
+[ext_resource type="Texture2D" uid="uid://cf05s64y4qdh2" path="res://_Assets/Images/characters/ingenieur/idle/breath_03.png" id="4_k0ona"]
+[ext_resource type="Texture2D" uid="uid://b5wsx3sa0iuci" path="res://_Assets/Images/characters/ingenieur/idle/breath_04.png" id="5_fe55i"]
+[ext_resource type="Texture2D" uid="uid://brc1047yhkoh5" path="res://_Assets/Images/characters/ingenieur/idle/breath_05.png" id="6_g1jnu"]
+[ext_resource type="Texture2D" uid="uid://i7t6c3csft35" path="res://_Assets/Images/characters/ingenieur/idle/breath_06.png" id="7_2djvd"]
+[ext_resource type="Texture2D" uid="uid://we02tkyh0lk8" path="res://_Assets/Images/characters/ingenieur/idle/breath_07.png" id="8_b3myr"]
+[ext_resource type="Texture2D" uid="uid://hyedfy5u7sn7" path="res://_Assets/Images/characters/ingenieur/idle/breath_08.png" id="9_t3xgj"]
+[ext_resource type="Texture2D" uid="uid://f0j8e0q1o5ql" path="res://_Assets/Images/characters/ingenieur/idle/breath_09.png" id="10_mf75q"]
+[ext_resource type="Texture2D" uid="uid://0daib4mpd4mn" path="res://_Assets/Images/characters/ingenieur/idle/breath_10.png" id="11_oqedv"]
+[ext_resource type="Texture2D" uid="uid://b8761tas0kegp" path="res://_Assets/Images/characters/ingenieur/idle/breath_11.png" id="12_86s6a"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_du240"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_orx38")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0u861")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_clpdi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_k0ona")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fe55i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_g1jnu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2djvd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_b3myr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_t3xgj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mf75q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_oqedv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_86s6a")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
+
+[node name="Node2D" type="Node2D" unique_id=839246555]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=198138642]
+sprite_frames = SubResource("SpriteFrames_du240")
+animation = &"idle"
+frame = 3
+frame_progress = 0.32559633
