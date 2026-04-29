@@ -28,18 +28,18 @@
 [ext_resource type="Texture2D" uid="uid://btyux8edprtlp" path="res://_Assets/Images/characters/artiste/cross_arms/arms_hold/cross_hold_13.png" id="26_hkd6r"]
 [ext_resource type="Texture2D" uid="uid://b8sq6f6suifv" path="res://_Assets/Images/characters/artiste/cross_arms/arms_hold/cross_hold_14.png" id="27_ve3fq"]
 [ext_resource type="Texture2D" uid="uid://ctw8m8v7agcom" path="res://_Assets/Images/characters/artiste/cross_arms/arms_hold/cross_hold_15.png" id="28_0vayq"]
-[ext_resource type="Texture2D" uid="uid://d1rf81vriokft" path="res://_Assets/Images/characters/artiste/idle/breath_00.png" id="29_bb0xm"]
-[ext_resource type="Texture2D" uid="uid://ch4shk47y7fna" path="res://_Assets/Images/characters/artiste/idle/breath_01.png" id="30_8euth"]
-[ext_resource type="Texture2D" uid="uid://bqj2eo7ksj8ex" path="res://_Assets/Images/characters/artiste/idle/breath_02.png" id="31_ep2ti"]
-[ext_resource type="Texture2D" uid="uid://c0iyi4alo8arl" path="res://_Assets/Images/characters/artiste/idle/breath_03.png" id="32_3eetn"]
-[ext_resource type="Texture2D" uid="uid://d2df8fg1n0vks" path="res://_Assets/Images/characters/artiste/idle/breath_04.png" id="33_6qeln"]
-[ext_resource type="Texture2D" uid="uid://c24l2m84hgxh" path="res://_Assets/Images/characters/artiste/idle/breath_05.png" id="34_ica7m"]
-[ext_resource type="Texture2D" uid="uid://ca1tnts2ofeu6" path="res://_Assets/Images/characters/artiste/idle/breath_06.png" id="35_kglrk"]
-[ext_resource type="Texture2D" uid="uid://dtfb7i2hp3ai6" path="res://_Assets/Images/characters/artiste/idle/breath_07.png" id="36_ajqc7"]
-[ext_resource type="Texture2D" uid="uid://cx7dvvg3t0nyl" path="res://_Assets/Images/characters/artiste/idle/breath_08.png" id="37_ce2be"]
-[ext_resource type="Texture2D" uid="uid://dnelma18oyn70" path="res://_Assets/Images/characters/artiste/idle/breath_09.png" id="38_3jjpx"]
-[ext_resource type="Texture2D" uid="uid://cyvu6fmww00po" path="res://_Assets/Images/characters/artiste/idle/breath_10.png" id="39_388b1"]
-[ext_resource type="Texture2D" uid="uid://wga4mt1wwb1x" path="res://_Assets/Images/characters/artiste/idle/breath_11.png" id="40_0apah"]
+[ext_resource type="Texture2D" uid="uid://d0vfwd1hjdifh" path="res://_Assets/Images/characters/artiste/idle/breath_00.png" id="29_bb0xm"]
+[ext_resource type="Texture2D" uid="uid://b1hob1rpum4qk" path="res://_Assets/Images/characters/artiste/idle/breath_01.png" id="30_8euth"]
+[ext_resource type="Texture2D" uid="uid://c4si25ngvcrme" path="res://_Assets/Images/characters/artiste/idle/breath_02.png" id="31_ep2ti"]
+[ext_resource type="Texture2D" uid="uid://ct1rlh1rnp11t" path="res://_Assets/Images/characters/artiste/idle/breath_03.png" id="32_3eetn"]
+[ext_resource type="Texture2D" uid="uid://b6opricga13io" path="res://_Assets/Images/characters/artiste/idle/breath_04.png" id="33_6qeln"]
+[ext_resource type="Texture2D" uid="uid://2vi44s7psk13" path="res://_Assets/Images/characters/artiste/idle/breath_05.png" id="34_ica7m"]
+[ext_resource type="Texture2D" uid="uid://dmpnm8eov2bpu" path="res://_Assets/Images/characters/artiste/idle/breath_06.png" id="35_kglrk"]
+[ext_resource type="Texture2D" uid="uid://uv60cbab5ruk" path="res://_Assets/Images/characters/artiste/idle/breath_07.png" id="36_ajqc7"]
+[ext_resource type="Texture2D" uid="uid://c4v4t48x6m5wg" path="res://_Assets/Images/characters/artiste/idle/breath_08.png" id="37_ce2be"]
+[ext_resource type="Texture2D" uid="uid://ccclk0g6xvtp8" path="res://_Assets/Images/characters/artiste/idle/breath_09.png" id="38_3jjpx"]
+[ext_resource type="Texture2D" uid="uid://ct3i8phptmf2x" path="res://_Assets/Images/characters/artiste/idle/breath_10.png" id="39_388b1"]
+[ext_resource type="Texture2D" uid="uid://bw8hb77501c7m" path="res://_Assets/Images/characters/artiste/idle/breath_11.png" id="40_0apah"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5qhh8"]
 animations = [{
@@ -187,6 +187,8 @@ animations = [{
 [node name="Node2D" type="Node2D" unique_id=1972595146]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=788034507]
+position = Vector2(-267, 98)
+scale = Vector2(1.7362638, 1.5460001)
 sprite_frames = SubResource("SpriteFrames_5qhh8")
-animation = &"arms_hold"
-frame_progress = 0.19749013
+animation = &"idle"
+frame_progress = 0.5172809

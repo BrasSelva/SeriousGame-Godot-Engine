@@ -58,7 +58,7 @@ stretch_mode = 5
 layout_mode = 2
 theme_override_colors/font_color = Color(0.16862746, 0.98039216, 0.98039216, 1)
 theme_override_font_sizes/font_size = 64
-text = "\"YOU & AI\""
+text = "YOU & AI"
 
 [node name="Subtitle" type="Label" parent="Content" unique_id=420913154]
 layout_mode = 2
