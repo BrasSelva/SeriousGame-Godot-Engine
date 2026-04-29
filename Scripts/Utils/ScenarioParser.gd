@@ -60,19 +60,28 @@ func afficher_noeud(node_id: String):
 		return
 		
 	for opt in options:
-		# SI l'option demande une compétence QUE l'on n'a pas, on ne crée pas le bouton
-		if opt.has("condition_skill") and not GameManager.unlocked_skills.has(opt["condition_skill"]):
-			continue # On passe à l'option suivante sans créer ce bouton
 		var btn = Button.new()
-		btn.text = opt["text"]
-		btn.custom_minimum_size = Vector2(0, 50) 
-		btn.pressed.connect(_on_choice_made.bind(opt))
+		var text_bouton = opt["text"]
+		
+		# Vérification de condition
+		var est_bloque = false
+		if opt.has("condition_skill"):
+			if not GameManager.has_skill(opt["condition_skill"]):
+				est_bloque = true
+				text_bouton = "[BLOQUÉ] " + text_bouton
+		
+		btn.text = text_bouton
+		btn.custom_minimum_size = Vector2(0, 50)
+		
+		if est_bloque:
+			btn.disabled = true # On le voit mais on ne peut pas cliquer
+		else:
+			btn.pressed.connect(_on_choice_made.bind(opt))
+			
 		choices_container.add_child(btn)
 
 func _on_choice_made(opt: Dictionary):
-	# On débloque la compétence si le JSON le demande
-	if opt.has("unlock_skill"):
-		GameManager.unlock_skill(opt["unlock_skill"])
+
 	# On récupère les valeurs du JSON ou 0 si elles n'existent pas
 	var h_impact = opt.get("impact_human_core", 0)
 	var ai_impact = opt.get("impact_ai_synergy", 0)
@@ -82,5 +91,7 @@ func _on_choice_made(opt: Dictionary):
 	# On met à jour le GameManager (On va créer cette fonction juste après)
 	GameManager.update_youcef_stats(h_impact, ai_impact, q_impact, t_spent)
 	
+	if opt.has("unlock_skill"):
+		GameManager.unlock_skill(opt["unlock_skill"])
 	# On passe à la suite
 	afficher_noeud(opt["next_node"])

@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://dadqmrq6wt4va"]
+
+[ext_resource type="Script" uid="uid://fehewdvky2qr" path="res://Scenes/UI/main_menu.gd" id="1_72sra"]
+[ext_resource type="Texture2D" uid="uid://ckbc11ku7nrhk" path="res://_Assets/Fonts/fond sombre.jpg" id="1_mjmdf"]
+[ext_resource type="Texture2D" uid="uid://b507ijx8jde6h" path="res://_Assets/Images/logo.png" id="2_72sra"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_72sra"]
+bg_color = Color(0.96862745, 0.9882353, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[node name="MainMenu" type="Control" unique_id=1030872521]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_72sra")
+
+[node name="Background" type="TextureRect" parent="." unique_id=427717418]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mjmdf")
+
+[node name="Content" type="VBoxContainer" parent="." unique_id=2093974472]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="Logo" type="TextureRect" parent="Content" unique_id=1637168855]
+layout_mode = 2
+texture = ExtResource("2_72sra")
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="Content" unique_id=2001822494]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16862746, 0.98039216, 0.98039216, 1)
+theme_override_font_sizes/font_size = 64
+text = "\"YOU & AI\""
+
+[node name="Subtitle" type="Label" parent="Content" unique_id=420913154]
+layout_mode = 2
+text = "Horizon 2035. L'automatisation redéfinit votre métier.
+      Allez-vous subir collaborer ou vous réinventer ?"
+
+[node name="StartButton" type="Button" parent="Content" unique_id=1610056166]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_72sra")
+text = "COMMENCER L'EXPÉRIENCE "
