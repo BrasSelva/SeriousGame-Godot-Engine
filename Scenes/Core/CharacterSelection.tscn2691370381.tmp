@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cygxaeiw8pewc"]
+
+[ext_resource type="Script" uid="uid://6kmypjlqhda1" path="res://Scripts/Controllers/CharacterSelection.gd" id="1_qn6g5"]
+[ext_resource type="PackedScene" uid="uid://cqd2njmmyes5n" path="res://Scenes/Core/idle_artiste.tscn" id="2_3yipr"]
+
+[node name="CharacterSelection" type="Control" unique_id=568000348]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qn6g5")
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1924915665]
+layout_mode = 0
+offset_left = 273.0
+offset_top = 31.0
+offset_right = 646.0
+offset_bottom = 128.0
+text = "\"You & AI : Le Simulateur\""
+
+[node name="PlayButton" type="Button" parent="." unique_id=1244368675]
+layout_mode = 0
+offset_left = 321.0
+offset_top = 701.0
+offset_right = 842.0
+offset_bottom = 840.0
+text = "JOUER"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=975571761]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Node2D" parent="." unique_id=1972595146 instance=ExtResource("2_3yipr")]
+position = Vector2(209, 398)

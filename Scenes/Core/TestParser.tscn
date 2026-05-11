@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://c6strxav2k7me"]
 
 [ext_resource type="Script" uid="uid://clc3i6rh2nkhg" path="res://Scripts/Utils/ScenarioParser.gd" id="1_xnajp"]
+[ext_resource type="Texture2D" uid="uid://bxodmortvbhxr" path="res://_Assets/Images/backgrounds/background_sci_fi.png" id="2_6ywjb"]
+[ext_resource type="PackedScene" uid="uid://cqd2njmmyes5n" path="res://Scenes/Core/idle_artiste.tscn" id="3_0rlx3"]
 
 [node name="Control" type="Control" unique_id=21478466]
 layout_mode = 3
@@ -13,10 +15,23 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xnajp")
 
+[node name="Background" type="TextureRect" parent="." unique_id=1402341768]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -66.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6ywjb")
+stretch_mode = 6
+
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=411528442]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 57.0
+offset_right = 1089.0
+offset_bottom = 742.0
 theme_override_constants/separation = 20
 
 [node name="LabelHumain" type="Label" parent="HBoxContainer" unique_id=597020442]
@@ -34,6 +49,16 @@ offset_left = 185.0
 offset_top = 50.0
 offset_right = 1680.0
 offset_bottom = 377.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=177471794]
+layout_mode = 0
+offset_left = 690.0
+offset_top = 340.0
+offset_right = 1312.0
+offset_bottom = 915.0
+
+[node name="Node2D" parent="VBoxContainer" unique_id=1972595146 instance=ExtResource("3_0rlx3")]
+position = Vector2(531, 240)
 
 [node name="ChoicesContainer" type="VBoxContainer" parent="." unique_id=2116207814]
 layout_mode = 0

@@ -1,7 +1,7 @@
 {
   "nodes": {
 	"start": {
-	  "text": "MISSION : Affiche Festival Jazz. Vous avez 4h. Vos jauges sont à 50%. Que faites-vous ?",
+	  "text": "MISSION : AFFICHE FESTIVAL NEO-JAZZ 2035.",
 	  "options": [
 		{
 		  "text": "Tout déléguer à l'IA (Rapide)",
