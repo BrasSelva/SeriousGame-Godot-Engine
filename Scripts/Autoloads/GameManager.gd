@@ -1,17 +1,24 @@
 extends Node
 
+# Statistiques globales du joueur
 var human_score: int = 50
 var ai_score: int = 50
 var quality_score: int = 50
 var time_left: int = 4 
 
+# Liste des compétences débloquées
 var unlocked_skills: Array = []
 
-func update_youcef_stats(h_delta, ai_delta, q_delta, t_delta):
+# FONCTION CORRIGÉE : On ajoute le typage ': int' aux arguments pour éviter les bugs
+func update_youcef_stats(h_delta: int, ai_delta: int, q_delta: int, t_delta: int):
 	human_score = clamp(human_score + h_delta, 0, 100)
 	ai_score = clamp(ai_score + ai_delta, 0, 100)
 	quality_score = clamp(quality_score + q_delta, 0, 100)
-	time_left -= t_delta
+	
+	# Sécurité : On utilise '-' car 't_delta' (time_cost) dans le JSON est positif (ex: 1 ou 2)
+	# On ajoute un 'clamp' pour éviter que le temps ne devienne négatif sous 0
+	time_left = clamp(time_left - t_delta, 0, 24)
+	
 	print("Stats: H:", human_score, " IA:", ai_score, " Q:", quality_score, " T:", time_left)
 
 func has_skill(skill_name: String) -> bool:
@@ -20,3 +27,4 @@ func has_skill(skill_name: String) -> bool:
 func unlock_skill(skill_name: String):
 	if not has_skill(skill_name):
 		unlocked_skills.append(skill_name)
+		print("⚡ Compétence débloquée : ", skill_name)

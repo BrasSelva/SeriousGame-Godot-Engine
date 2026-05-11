@@ -4,15 +4,15 @@
 	  "text": "MISSION : AFFICHE FESTIVAL NEO-JAZZ 2035.",
 	  "options": [
 		{
-		  "text": "Tout déléguer à l'IA (Rapide)",
+		  "text": "Lancer production IA rapide",
 		  "impact_human_core": -30,
 		  "impact_ai_synergy": 30,
 		  "impact_quality": 0,
 		  "time_cost": 1,
-		  "next_node": "etape_2"
+		  "next_node": "fin_echec_ia"
 		},
 		{
-		  "text": "Aller dans l'Arbre de Compétences",
+		  "text": "Visiter arbre de compétences",
 		  "next_node": "arbre_youcef"
 		}
 	  ]
@@ -37,7 +37,7 @@
 		  "impact_human_core": -20,
 		  "impact_quality": 40,
 		  "time_cost": 1,
-		  "next_node": "fin_echec"
+		  "next_node": "fin_echec_ia"
 		},
 		{
 		  "text": "Utiliser ma Direction Artistique (Éthique)",
@@ -48,12 +48,17 @@
 		}
 	  ]
 	},
+	"fin_echec_ia": {
+	  "text": "ECHEC ! Le client rejette l'affiche : \"C'EST BEAU MAIS C'EST VIDE !\"\nVous devez débloquer la compétence \"Direction Artistique\" pour diriger l'IA.",
+	  "options": [
+		{
+		  "text": "Visiter arbre de compétences",
+		  "next_node": "arbre_youcef"
+		}
+	  ]
+	},
 	"fin_succes": {
 	  "text": "SUCCÈS ! Qualité 95%. Symbiose parfaite.",
-	  "options": []
-	},
-	"fin_echec": {
-	  "text": "ÉCHEC. L'affiche est générique. Obsolescence.",
 	  "options": []
 	}
   }
