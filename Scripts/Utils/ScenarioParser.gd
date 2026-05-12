@@ -38,7 +38,12 @@ func afficher_noeud(node_id: String):
 	# On nettoie les anciens boutons d'options
 	for child in choices_container.get_children():
 		child.queue_free()
-		
+
+	# Redirection vers l'arbre de compétences
+	if node_id == "arbre_youcef":
+		get_tree().change_scene_to_file("res://Scenes/Core/ArbreCompetence.tscn")
+		return
+
 	# Vérification de sécurité sur l'existence du nœud
 	if not scenario_data.has("nodes") or not scenario_data["nodes"].has(node_id):
 		story_text.text = "❌ ERREUR : Le nœud '" + node_id + "' est introuvable."
@@ -58,7 +63,7 @@ func afficher_noeud(node_id: String):
 	elif node_id == "fin_echec_ia":
 		story_text.text = current_node["text"]
 		if illustration:
-			illustration.texture = load("res://_Assets/Images/saxophone.jpg") # Ajuste si ton dossier s'appelle autrement !
+			illustration.texture = load("res://_Assets/Images/saxophone.jpg")
 			illustration.show()
 	else:
 		story_text.text = current_node["text"]
@@ -66,7 +71,6 @@ func afficher_noeud(node_id: String):
 			illustration.hide()
 
 	# --- EFFET MACHINE À ÉCRIRE SÉCURISÉ ---
-	# Si un effet d'écriture tournait déjà, on l'arrête proprement
 	if ecriture_tween and ecriture_tween.is_running():
 		ecriture_tween.kill()
 		

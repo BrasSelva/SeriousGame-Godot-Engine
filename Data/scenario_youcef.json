@@ -1,65 +1,90 @@
 {
-  "nodes": {
-	"start": {
-	  "text": "MISSION : AFFICHE FESTIVAL NEO-JAZZ 2035.",
-	  "options": [
-		{
-		  "text": "Lancer production IA rapide",
-		  "impact_human_core": -30,
-		  "impact_ai_synergy": 30,
-		  "impact_quality": 0,
-		  "time_cost": 1,
-		  "next_node": "fin_echec_ia"
+	"nodes": {
+		"start": {
+			"text": "MISSION : AFFICHE FESTIVAL NEO-JAZZ 2035.",
+			"options": [
+				{
+					"text": "Lancer production IA rapide",
+					"impact_human_core": -30,
+					"impact_ai_synergy": 30,
+					"impact_quality": 0,
+					"time_cost": 1,
+					"next_node": "fin_echec_ia"
+				},
+				{
+					"text": "Visiter arbre de compétences",
+					"next_node": "arbre_youcef"
+				}
+			]
 		},
-		{
-		  "text": "Visiter arbre de compétences",
-		  "next_node": "arbre_youcef"
-		}
-	  ]
-	},
-	"arbre_youcef": {
-	  "text": "Vous étudiez la 'Direction Artistique'. Cela prend du temps mais augmente votre score humain.",
-	  "options": [
-		{
-		  "text": "Apprendre la Direction Artistique (-2h)",
-		  "unlock_skill": "dir_art",
-		  "impact_human_core": 20,
-		  "time_cost": 2,
-		  "next_node": "etape_2"
-		}
-	  ]
-	},
-	"etape_2": {
-	  "text": "L'affiche est presque prête. Le client demande une touche d'émotion finale.",
-	  "options": [
-		{
-		  "text": "Appliquer un filtre IA (Risqué)",
-		  "impact_human_core": -20,
-		  "impact_quality": 40,
-		  "time_cost": 1,
-		  "next_node": "fin_echec_ia"
+		"arbre_youcef": {
+			"text": "Choisissez une compétence à débloquer.",
+			"options": [
+				{
+					"text": "Apprendre la Direction Artistique (-2h)",
+					"unlock_skill": "dir_art",
+					"impact_human_core": 20,
+					"time_cost": 2,
+					"next_node": "etape_2"
+				}
+			],
+			"competences": [
+				{
+					"id": "dir_art",
+					"label": "Direction Artistique",
+					"cote": "humain",
+					"debloquee": false,
+					"question": "L'IA propose une image froide. Comment lui redonner de l'émotion ?",
+					"reponses": [
+						{
+							"label": "A",
+							"texte": "Je demande plus de pixels.",
+							"correcte": false
+						},
+						{
+							"label": "B",
+							"texte": "Je modifie le prompt pour ajouter des textures imparfaites et une lumière chaude.",
+							"correcte": true
+						}
+					],
+					"badge": "Direction Artistique débloquée !",
+					"impact_human_core": 20,
+					"time_cost": 2,
+					"next_node": "etape_2"
+				}
+			]
 		},
-		{
-		  "text": "Utiliser ma Direction Artistique (Éthique)",
-		  "condition_skill": "dir_art",
-		  "impact_quality": 95,
-		  "time_cost": 1,
-		  "next_node": "fin_succes"
+		"etape_2": {
+			"text": "L'affiche est presque prête. Le client demande une touche d'émotion finale.",
+			"options": [
+				{
+					"text": "Appliquer un filtre IA (Risqué)",
+					"impact_human_core": -20,
+					"impact_quality": 40,
+					"time_cost": 1,
+					"next_node": "fin_echec_ia"
+				},
+				{
+					"text": "Utiliser ma Direction Artistique (Éthique)",
+					"condition_skill": "dir_art",
+					"impact_quality": 95,
+					"time_cost": 1,
+					"next_node": "fin_succes"
+				}
+			]
+		},
+		"fin_echec_ia": {
+			"text": "ECHEC ! Le client rejette l'affiche : \"C'EST BEAU MAIS C'EST VIDE !\"\nVous devez débloquer la compétence \"Direction Artistique\" pour diriger l'IA.",
+			"options": [
+				{
+					"text": "Visiter arbre de compétences",
+					"next_node": "arbre_youcef"
+				}
+			]
+		},
+		"fin_succes": {
+			"text": "SUCCÈS ! Qualité 95%. Symbiose parfaite.",
+			"options": []
 		}
-	  ]
-	},
-	"fin_echec_ia": {
-	  "text": "ECHEC ! Le client rejette l'affiche : \"C'EST BEAU MAIS C'EST VIDE !\"\nVous devez débloquer la compétence \"Direction Artistique\" pour diriger l'IA.",
-	  "options": [
-		{
-		  "text": "Visiter arbre de compétences",
-		  "next_node": "arbre_youcef"
-		}
-	  ]
-	},
-	"fin_succes": {
-	  "text": "SUCCÈS ! Qualité 95%. Symbiose parfaite.",
-	  "options": []
 	}
-  }
 }

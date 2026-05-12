@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://oduaqgs2n2vx"]
+
+[ext_resource type="Script" uid="uid://bdegdqf0htv42" path="res://Scripts/Controllers/popup_qcm.gd" id="1_mxnuh"]
+
+[node name="PopupQCM" type="Control" unique_id=1192107664]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mxnuh")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=713155039]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=42630771]
+layout_mode = 2
+
+[node name="LabelTitre" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1934386719]
+layout_mode = 2
+
+[node name="LabelQuestion" type="Label" parent="PanelContainer/VBoxContainer" unique_id=432789008]
+layout_mode = 2
+
+[node name="BtnReponseA" type="Button" parent="PanelContainer/VBoxContainer" unique_id=378300226]
+layout_mode = 2
+
+[node name="BtnReponseB" type="Button" parent="PanelContainer/VBoxContainer" unique_id=2109063225]
+layout_mode = 2
+
+[node name="LabelBadge" type="Label" parent="PanelContainer/VBoxContainer" unique_id=864805329]
+layout_mode = 2
+
+[node name="BtnFermer" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1357248136]
+layout_mode = 2

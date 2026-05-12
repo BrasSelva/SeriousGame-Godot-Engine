@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bsqs1mw32pxr4"]
+[gd_scene format=3 uid="uid://d4hagdwljk2oa"]
 
 [ext_resource type="Texture2D" uid="uid://w1jgmddp2fkc" path="res://_Assets/Images/backgrounds/background_arbre_competence.png" id="1_4fmad"]
 [ext_resource type="Script" uid="uid://b080311qt0kyo" path="res://Scripts/Controllers/ArbreCompetences.gd" id="1_wysdt"]
@@ -50,7 +50,7 @@ stretch_mode = 5
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 54.0
+offset_bottom = 100.0
 grow_horizontal = 2
 
 [node name="ProfilePic" type="TextureRect" parent="Header" unique_id=1873474669]
