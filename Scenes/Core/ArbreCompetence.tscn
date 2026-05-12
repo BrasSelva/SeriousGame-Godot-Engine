@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://bsqs1mw32pxr4"]
+
+[ext_resource type="Texture2D" uid="uid://w1jgmddp2fkc" path="res://_Assets/Images/backgrounds/background_arbre_competence.png" id="1_4fmad"]
+[ext_resource type="Script" uid="uid://b080311qt0kyo" path="res://Scripts/Controllers/ArbreCompetences.gd" id="1_wysdt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wysdt"]
+font_color = Color(1, 0.5411765, 0.07058824, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fggxw"]
+font_color = Color(1, 0.61960787, 0.22352941, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wvr3v"]
+font_color = Color(1, 0.57254905, 0.21960784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ibl5"]
+bg_color = Color(0.2, 0.13333334, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.6, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="ArbreCompetences" type="Control" unique_id=365033807]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wysdt")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1382902661]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -7.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4fmad")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Header" type="VBoxContainer" parent="." unique_id=1824085861]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 54.0
+grow_horizontal = 2
+
+[node name="ProfilePic" type="TextureRect" parent="Header" unique_id=1873474669]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MainTitle" type="Label" parent="Header" unique_id=473172312]
+layout_mode = 2
+text = "TON FUTUR AUGMENTÉ EN TANT QU'ARTISTE 2035"
+label_settings = SubResource("LabelSettings_wysdt")
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Header" unique_id=1096279514]
+layout_mode = 2
+text = "ARBRE DE COMPÉTENCES HYBRIDE"
+
+[node name="MainLayout" type="HBoxContainer" parent="." unique_id=481273256]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LeftIA" type="Control" parent="MainLayout" unique_id=1885048296]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="LabelIA" type="Label" parent="MainLayout/LeftIA" unique_id=862349740]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "IA"
+label_settings = SubResource("LabelSettings_fggxw")
+autowrap_trim_flags = 128
+
+[node name="RightHuman" type="Control" parent="MainLayout" unique_id=573664290]
+layout_mode = 2
+
+[node name="LabelHuman" type="Label" parent="MainLayout/RightHuman" unique_id=1600854821]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "HUMAN"
+label_settings = SubResource("LabelSettings_wvr3v")
+horizontal_alignment = 2
+
+[node name="BrainImage" type="TextureRect" parent="MainLayout/RightHuman" unique_id=919318871]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Nodes" type="Node2D" parent="MainLayout/RightHuman" unique_id=1146881803]
+
+[node name="BtnDirArt" type="Button" parent="MainLayout/RightHuman/Nodes" unique_id=1039197131]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Direction Artistique"
+
+[node name="SkillPopup" type="PanelContainer" parent="." unique_id=2034879543]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 8.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ibl5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SkillPopup" unique_id=1207988776]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="SkillPopup/VBoxContainer" unique_id=1984717135]
+layout_mode = 2
+text = "DÉBLOQUER COMPÉTENCE"
+
+[node name="Desc" type="Label" parent="SkillPopup/VBoxContainer" unique_id=480725235]
+layout_mode = 2
+text = "L'IA propose une image froide..."
+
+[node name="ChoiceA" type="Button" parent="SkillPopup/VBoxContainer" unique_id=2101356387]
+layout_mode = 2
+
+[node name="ChoiceB" type="Button" parent="SkillPopup/VBoxContainer" unique_id=1491278605]
+layout_mode = 2
+
+[node name="BadgeText" type="Label" parent="SkillPopup/VBoxContainer" unique_id=614368200]
+layout_mode = 2
+text = "BADGE DÉBLOQUÉ"
+
+[node name="BtnRetour" type="Button" parent="SkillPopup" unique_id=1510189901]
+layout_mode = 2
+text = "RETOUR À LA MISSION"
