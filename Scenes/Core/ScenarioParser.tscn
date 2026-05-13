@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://c6strxav2k7me"]
 
-[ext_resource type="Script" uid="uid://clc3i6rh2nkhg" path="res://Scripts/Utils/ScenarioParser.gd" id="1_xnajp"]
-[ext_resource type="Texture2D" uid="uid://bxodmortvbhxr" path="res://_Assets/Images/backgrounds/background_sci_fi.png" id="2_6ywjb"]
-[ext_resource type="PackedScene" uid="uid://cqd2njmmyes5n" path="res://Scenes/Core/idle_artiste.tscn" id="3_0rlx3"]
-[ext_resource type="Texture2D" uid="uid://dyj60et0ai225" path="res://_Assets/Images/saxophone.jpg" id="4_irxr8"]
+[ext_resource type="Script" uid="uid://clc3i6rh2nkhg" path="res://Scripts/Utils/ScenarioParser.gd" id="1_iajxc"]
+[ext_resource type="Texture2D" uid="uid://bxodmortvbhxr" path="res://_Assets/Images/backgrounds/background_sci_fi.png" id="2_lynfm"]
+[ext_resource type="PackedScene" uid="uid://cqd2njmmyes5n" path="res://Scenes/Core/idle_artiste.tscn" id="3_cvtlb"]
+[ext_resource type="Texture2D" uid="uid://dyj60et0ai225" path="res://_Assets/Images/saxophone.jpg" id="4_5ahm8"]
 
 [node name="Control" type="Control" unique_id=21478466]
 layout_mode = 3
@@ -14,7 +14,7 @@ offset_top = 75.0
 offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_xnajp")
+script = ExtResource("1_iajxc")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1402341768]
 layout_mode = 1
@@ -25,7 +25,7 @@ offset_top = -66.0
 offset_bottom = -66.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_6ywjb")
+texture = ExtResource("2_lynfm")
 stretch_mode = 6
 
 [node name="MainLayout" type="HBoxContainer" parent="." unique_id=411528442]
@@ -44,8 +44,8 @@ theme_override_constants/separation = 20
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Node2D" parent="MainLayout/LeftPanel_Perso" unique_id=1972595146 instance=ExtResource("3_0rlx3")]
-position = Vector2(534, 671)
+[node name="Node2D" parent="MainLayout/LeftPanel_Perso" unique_id=1972595146 instance=ExtResource("3_cvtlb")]
+position = Vector2(243, 714)
 
 [node name="CenterPanel_Story" type="VBoxContainer" parent="MainLayout" unique_id=1737113999]
 layout_mode = 2
@@ -70,7 +70,7 @@ theme_override_colors/default_color = Color(1, 1, 1, 1)
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("4_irxr8")
+texture = ExtResource("4_5ahm8")
 expand_mode = 1
 stretch_mode = 5
 flip_h = true

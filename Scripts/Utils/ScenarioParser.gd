@@ -8,9 +8,16 @@ var scenario_data: Dictionary = {}
 @onready var choices_container = $MainLayout/CenterPanel_Story/ChoicesContainer
 @onready var label_temps = $MainLayout/RightPanel_Stats/TimeBox/VBoxContainer/LabelTemps
 
+@onready var perso_youcef = $MainLayout/LeftPanel_Perso/Node2D
+
 var ecriture_tween: Tween
 
 func _ready():
+	# ---> NOUVEAU : Lance l'animation de Youcef au démarrage <---
+	if perso_youcef and perso_youcef.has_node("AnimatedSprite2D"):
+		perso_youcef.get_node("AnimatedSprite2D").play("idle")
+		print("Youcef est animé dans la scène principale !")
+		
 	# Charge le fichier JSON de Youcef
 	scenario_data = load_scenario_from_file("res://Data/scenario_youcef.json")
 	# Lance le premier nœud du scénario
