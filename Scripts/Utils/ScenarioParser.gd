@@ -169,9 +169,15 @@ func _on_choice_made(opt: Dictionary):
 	# Mise à jour globale dans le GameManager
 	GameManager.update_youcef_stats(h_impact, ai_impact, q_impact, t_spent)
 	
-	# Déblocage de compétence si mentionné
+	# Déblocage de compétence si mentionné (au cas où on le fait via le texte)
 	if opt.has("unlock_skill"):
 		GameManager.unlock_skill(opt["unlock_skill"])
 		
-	# Transition vers le nœud suivant
+	# ---> LE PORTAIL VERS TON INTERFACE VISUELLE <---
+	# On cherche le mot "aller_vers_arbre" défini dans le JSON
+	if opt.has("next_node") and opt["next_node"] == "aller_vers_arbre":
+		get_tree().change_scene_to_file("res://Scenes/Core/ArbreCompetence.tscn")
+		return # On stoppe la fonction ici pour changer d'écran !
+		
+	# Transition vers le nœud suivant classique (si ce n'est pas l'arbre)
 	afficher_noeud(opt["next_node"])

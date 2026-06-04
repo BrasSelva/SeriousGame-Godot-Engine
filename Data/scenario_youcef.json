@@ -1,64 +1,50 @@
 {
   "nodes": {
 	"start": {
-	  "text": "MISSION : AFFICHE FESTIVAL NEO-JAZZ 2035.",
+	  "text": "MISSION : AFFICHE FESTIVAL NEO-JAZZ 2035.\n\nLe client exige un visuel capturant la mélancolie futuriste des nuits de 2035. Comment procédez-vous ?",
 	  "options": [
 		{
-		  "text": "Lancer production IA rapide",
+		  "text": "Lancer la production IA en mode automatique",
 		  "impact_human_core": -30,
 		  "impact_ai_synergy": 30,
-		  "impact_quality": 0,
 		  "time_cost": 1,
 		  "next_node": "fin_echec_ia"
 		},
 		{
-		  "text": "Visiter arbre de compétences",
-		  "next_node": "arbre_youcef"
-		}
-	  ]
-	},
-	"arbre_youcef": {
-	  "text": "Vous étudiez la 'Direction Artistique'. Cela prend du temps mais augmente votre score humain.",
-	  "options": [
-		{
-		  "text": "Apprendre la Direction Artistique (-2h)",
-		  "unlock_skill": "dir_art",
-		  "impact_human_core": 20,
-		  "time_cost": 2,
-		  "next_node": "etape_2"
-		}
-	  ]
-	},
-	"etape_2": {
-	  "text": "L'affiche est presque prête. Le client demande une touche d'émotion finale.",
-	  "options": [
-		{
-		  "text": "Appliquer un filtre IA (Risqué)",
-		  "impact_human_core": -20,
-		  "impact_quality": 40,
-		  "time_cost": 1,
-		  "next_node": "fin_echec_ia"
-		},
-		{
-		  "text": "Utiliser ma Direction Artistique (Éthique)",
+		  "text": "Appliquer ma 'Direction Artistique' sur l'IA",
 		  "condition_skill": "dir_art",
 		  "impact_quality": 95,
-		  "time_cost": 1,
+		  "impact_human_core": 20,
+		  "time_cost": 2,
 		  "next_node": "fin_succes"
+		},
+		{
+		  "text": "Visiter l'Arbre de Compétences",
+		  "next_node": "aller_vers_arbre"
 		}
 	  ]
 	},
 	"fin_echec_ia": {
-	  "text": "ECHEC ! Le client rejette l'affiche : \"C'EST BEAU MAIS C'EST VIDE !\"\nVous devez débloquer la compétence \"Direction Artistique\" pour diriger l'IA.",
+	  "text": "ECHEC ! Le client rejette l'affiche : \"C'EST BEAU MAIS C'EST VIDE !\"\n\nL'IA a manqué d'âme. Allez-vous prendre le temps d'étudier la Direction Artistique, ou forcer la livraison au risque de décevoir le client ?",
 	  "options": [
 		{
-		  "text": "Visiter arbre de compétences",
-		  "next_node": "arbre_youcef"
+		  "text": "Aller débloquer la compétence (Arbre)",
+		  "next_node": "aller_vers_arbre"
+		},
+		{
+		  "text": "Livrer l'affiche telle quelle (Fin de mission)",
+		  "impact_quality": -50,
+		  "time_cost": 0,
+		  "next_node": "fin_mauvaise"
 		}
 	  ]
 	},
 	"fin_succes": {
-	  "text": "SUCCÈS ! Qualité 95%. Symbiose parfaite.",
+	  "text": "SUCCÈS TOTAL !\n\nL'affiche est magnifique. Le client est ravi de la touche d'émotion humaine qui se dégage du visuel généré. Symbiose parfaite atteinte.",
+	  "options": []
+	},
+	"fin_mauvaise": {
+	  "text": "ÉCHEC CRITIQUE...\n\nVous avez forcé la livraison. Le client a refusé de payer et la réputation du studio en a pris un coup. L'IA seule n'a pas suffi.",
 	  "options": []
 	}
   }

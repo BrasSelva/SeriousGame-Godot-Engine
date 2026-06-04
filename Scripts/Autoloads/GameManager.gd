@@ -1,10 +1,10 @@
 extends Node
 
 # Statistiques globales du joueur
-var human_score: int = 50
-var ai_score: int = 50
-var quality_score: int = 50
-var time_left: int = 4 
+var human_score: int = 50  # Neutre au début
+var ai_score: int = 50     # Neutre au début
+var quality_score: int = 0 # L'affiche n'est pas encore créée
+var time_left: int = 4
 
 # Liste des compétences débloquées
 var unlocked_skills: Array = []
