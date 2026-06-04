@@ -1,0 +1,199 @@
+[gd_scene format=3 uid="uid://c6strxav2k7me"]
+
+[ext_resource type="Script" uid="uid://clc3i6rh2nkhg" path="res://Scripts/Utils/ScenarioParser.gd" id="1_iajxc"]
+[ext_resource type="Texture2D" uid="uid://bxodmortvbhxr" path="res://_Assets/Images/backgrounds/background_sci_fi.png" id="2_lynfm"]
+[ext_resource type="PackedScene" uid="uid://cqd2njmmyes5n" path="res://Scenes/Core/idle_artiste.tscn" id="3_cvtlb"]
+[ext_resource type="Texture2D" uid="uid://codnr1fptedil" path="res://_Assets/Images/saxophone.png" id="4_5ahm8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iajxc"]
+bg_color = Color(0.20784314, 0.24705882, 0.52156866, 0.6392157)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.40784314, 0.44313726, 0.9098039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lynfm"]
+bg_color = Color(0, 0, 0.08235294, 0.75686276)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvtlb"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.1764706, 0.21568628, 0.4509804, 0.16862746)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.44313726, 0.078431375, 0.019607844, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 50.0
+expand_margin_right = 50.0
+
+[sub_resource type="Theme" id="Theme_iajxc"]
+
+[node name="Control" type="Control" unique_id=21478466]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 75.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iajxc")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1402341768]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -66.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_lynfm")
+stretch_mode = 6
+
+[node name="TopTitles" type="VBoxContainer" parent="." unique_id=483614844]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="MissionTitle" type="Label" parent="TopTitles" unique_id=1534608882]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+
+[node name="SubTitle" type="Label" parent="TopTitles" unique_id=51730023]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.61960787, 0.88235295, 0.8980392)
+theme_override_font_sizes/font_size = 20
+text = "CONTRAINTES : 4H CHRONO. FEELING : MELANCOLIE & FUTURISME"
+horizontal_alignment = 1
+
+[node name="MainLayout" type="HBoxContainer" parent="." unique_id=411528442]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -70.0
+offset_right = 3.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="LeftPanel_Perso" type="MarginContainer" parent="MainLayout" unique_id=1105549543]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Node2D" parent="MainLayout/LeftPanel_Perso" unique_id=1972595146 instance=ExtResource("3_cvtlb")]
+position = Vector2(243, 714)
+
+[node name="CenterPanel_Story" type="VBoxContainer" parent="MainLayout" unique_id=1737113999]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="HeaderStory" type="Label" parent="MainLayout/CenterPanel_Story" unique_id=85911264]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_iajxc")
+text = "CRÉATION AFFICHE"
+horizontal_alignment = 1
+
+[node name="StoryBox" type="PanelContainer" parent="MainLayout/CenterPanel_Story" unique_id=85328596]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lynfm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainLayout/CenterPanel_Story/StoryBox" unique_id=977378321]
+layout_mode = 2
+
+[node name="BorderIllustration" type="PanelContainer" parent="MainLayout/CenterPanel_Story/StoryBox/VBoxContainer" unique_id=1767211497]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_cvtlb")
+
+[node name="Illustration" type="TextureRect" parent="MainLayout/CenterPanel_Story/StoryBox/VBoxContainer/BorderIllustration" unique_id=997057941]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 2
+texture = ExtResource("4_5ahm8")
+expand_mode = 2
+stretch_mode = 5
+flip_h = true
+
+[node name="StoryText" type="RichTextLabel" parent="MainLayout/CenterPanel_Story/StoryBox/VBoxContainer" unique_id=975031120]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+horizontal_alignment = 1
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="MainLayout/CenterPanel_Story" unique_id=807910260]
+layout_mode = 2
+theme = SubResource("Theme_iajxc")
+theme_override_constants/separation = 15
+
+[node name="RightPanel_Stats" type="VBoxContainer" parent="MainLayout" unique_id=304572623]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 60
+
+[node name="QualityBox" type="PanelContainer" parent="MainLayout/RightPanel_Stats" unique_id=1355955959]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iajxc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainLayout/RightPanel_Stats/QualityBox" unique_id=1522136172]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MainLayout/RightPanel_Stats/QualityBox/VBoxContainer" unique_id=605565690]
+layout_mode = 2
+text = "QUALITÉ ÉMOTIONNELLE"
+
+[node name="ProgressQuality" type="TextureProgressBar" parent="MainLayout/RightPanel_Stats/QualityBox/VBoxContainer" unique_id=1696568050]
+layout_mode = 2
+
+[node name="TimeBox" type="PanelContainer" parent="MainLayout/RightPanel_Stats" unique_id=1588669768]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iajxc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainLayout/RightPanel_Stats/TimeBox" unique_id=830983268]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MainLayout/RightPanel_Stats/TimeBox/VBoxContainer" unique_id=552559434]
+layout_mode = 2
+
+[node name="LabelTemps" type="Label" parent="MainLayout/RightPanel_Stats/TimeBox/VBoxContainer" unique_id=1309947949]
+layout_mode = 2

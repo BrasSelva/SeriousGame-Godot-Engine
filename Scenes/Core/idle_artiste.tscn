@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cqd2njmmyes5n"]
 
+[ext_resource type="Script" uid="uid://bnk0xnk626g0t" path="res://Scripts/selection_circle.gd" id="1_8euth"]
 [ext_resource type="Texture2D" uid="uid://dgwk7oo77n2v5" path="res://_Assets/Images/characters/artiste/cross_arms/cross_arms_in/cross_in_00.png" id="1_bb0xm"]
 [ext_resource type="Texture2D" uid="uid://da3wwatffc2v" path="res://_Assets/Images/characters/artiste/cross_arms/cross_arms_in/cross_in_01.png" id="2_8euth"]
 [ext_resource type="Texture2D" uid="uid://c2uo1ufwj2kyk" path="res://_Assets/Images/characters/artiste/cross_arms/cross_arms_in/cross_in_02.png" id="3_ep2ti"]
@@ -185,9 +186,9 @@ animations = [{
 }]
 
 [node name="Node2D" type="Node2D" unique_id=1972595146]
+script = ExtResource("1_8euth")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=788034507]
-position = Vector2(-267, 98)
 scale = Vector2(1.7362638, 1.5460001)
 sprite_frames = SubResource("SpriteFrames_5qhh8")
 animation = &"idle"

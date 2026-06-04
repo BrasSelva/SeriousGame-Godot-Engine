@@ -7,7 +7,7 @@ func _draw():
 	if progress > 0:
 		draw_arc(
 			Vector2.ZERO,
-			60,
+			280,
 			-PI/2,
 			-PI/2 + (2 * PI * progress),
 			64,

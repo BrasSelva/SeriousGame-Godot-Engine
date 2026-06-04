@@ -1,9 +1,8 @@
-[gd_scene format=3 uid="uid://c6strxav2k7me"]
+[gd_scene format=3 uid="uid://0tdfbjmoyrex"]
 
 [ext_resource type="Script" uid="uid://clc3i6rh2nkhg" path="res://Scripts/Utils/ScenarioParser.gd" id="1_xnajp"]
 [ext_resource type="Texture2D" uid="uid://bxodmortvbhxr" path="res://_Assets/Images/backgrounds/background_sci_fi.png" id="2_6ywjb"]
 [ext_resource type="PackedScene" uid="uid://cqd2njmmyes5n" path="res://Scenes/Core/idle_artiste.tscn" id="3_0rlx3"]
-[ext_resource type="Texture2D" uid="uid://dyj60et0ai225" path="res://_Assets/Images/saxophone.jpg" id="4_irxr8"]
 
 [node name="Control" type="Control" unique_id=21478466]
 layout_mode = 3
@@ -70,7 +69,6 @@ theme_override_colors/default_color = Color(1, 1, 1, 1)
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("4_irxr8")
 expand_mode = 1
 stretch_mode = 5
 flip_h = true

@@ -78,7 +78,7 @@ offset_right = 1312.0
 offset_bottom = 915.0
 
 [node name="Node2D" parent="VBoxContainer" unique_id=1972595146 instance=ExtResource("2_3yipr")]
-position = Vector2(531, 240)
+position = Vector2(279, 255)
 
 [node name="ArtisteName" type="Button" parent="." unique_id=757297782]
 layout_mode = 1
