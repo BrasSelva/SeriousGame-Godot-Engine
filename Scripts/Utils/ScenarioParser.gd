@@ -3,8 +3,8 @@ extends Control
 var scenario_data: Dictionary = {}
 
 # Références vers les nœuds de ton interface
-@onready var mission_title = $MainLayout/CenterPanel_Story/MissionTitle
-@onready var story_text = $MainLayout/CenterPanel_Story/StoryBox/StoryText
+@onready var mission_title = $TopTitles/MissionTitle
+@onready var story_text = $MainLayout/CenterPanel_Story/StoryBox/VBoxContainer/StoryText
 @onready var choices_container = $MainLayout/CenterPanel_Story/ChoicesContainer
 @onready var label_temps = $MainLayout/RightPanel_Stats/TimeBox/VBoxContainer/LabelTemps
 
@@ -55,22 +55,33 @@ func afficher_noeud(node_id: String):
 	label_temps.text = str(GameManager.time_left) + "H"
 
 	# Gestion des affichages spécifiques aux nœuds et des images
-	var illustration = $MainLayout/CenterPanel_Story/StoryBox/Illustration
+	# 1. On cible la boîte rouge pour pouvoir la cacher/afficher
+	var cadre_rouge = $MainLayout/CenterPanel_Story/StoryBox/VBoxContainer/BorderIllustration
+	# 2. On cible l'image à l'intérieur pour changer la photo
+	var illustration = cadre_rouge.get_node("Illustration")
 	
 	if node_id == "start":
 		mission_title.text = current_node["text"]
 		story_text.text = "Le Directeur Artistique du Blue Moon Club vous confie la création de l'affiche officielle du festival. Il exige un visuel capturant la mélancolie futuriste des nuits de 2035."
-		if illustration:
-			illustration.hide()
+		# On cache TOUTE la boîte rouge
+		if cadre_rouge:
+			cadre_rouge.hide()
+			
 	elif node_id == "fin_echec_ia":
 		story_text.text = current_node["text"]
+		story_text.add_theme_color_override("default_color", Color.RED)
 		if illustration:
-			illustration.texture = load("res://_Assets/Images/saxophone.jpg") # Ajuste si ton dossier s'appelle autrement !
-			illustration.show()
+			illustration.texture = load("res://_Assets/Images/saxophone.png") # Ajuste si besoin
+		# On affiche TOUTE la boîte rouge avec l'image dedans
+		if cadre_rouge:
+			cadre_rouge.show()
+			
 	else:
 		story_text.text = current_node["text"]
-		if illustration:
-			illustration.hide()
+		story_text.add_theme_color_override("default_color", Color.WHITE)
+		# On cache TOUTE la boîte rouge pour les autres moments de l'histoire
+		if cadre_rouge:
+			cadre_rouge.hide()
 
 	# --- EFFET MACHINE À ÉCRIRE SÉCURISÉ ---
 	# Si un effet d'écriture tournait déjà, on l'arrête proprement
@@ -110,26 +121,42 @@ func creer_bouton_choix(opt: Dictionary):
 	btn.text = text_bouton
 	btn.custom_minimum_size = Vector2(0, 60) # Hauteur confortable pour le clic
 	
-	# Design "Cyber" dynamique des boutons par code
+# Ton design "Cyber" normal
 	var style = StyleBoxFlat.new()
-	style.bg_color = Color("#0A1020CC") # Fond sombre translucide
+	style.bg_color = Color("#2D3773", 0.8) # Fond sombre translucide
 	style.border_width_bottom = 2
 	style.border_width_top = 2
 	style.border_width_left = 2
 	style.border_width_right = 2
-	style.border_color = Color("#00FFFF") # Bordure Cyan
+	style.border_color = Color("#6871E8") # Bordure
 	style.corner_radius_top_left = 15
 	style.corner_radius_top_right = 15
 	style.corner_radius_bottom_left = 15
 	style.corner_radius_bottom_right = 15
 	
+	# ---> LA MAGIE POUR LE SURVOL (HOVER) <---
+	# 1. On clone le style (ça copie les bordures et les coins ronds automatiquement !)
+	var style_hover = style.duplicate()
+	
+	# 2. On modifie juste la couleur de fond et la bordure du clone pour qu'il s'illumine
+	style_hover.bg_color = Color("#3A4694", 0.95) # Un bleu un peu plus clair et opaque
+	style_hover.border_color = Color("#8D95FF") # Une bordure encore plus lumineuse
+	
+	# ---> APPLICATION DES STYLES AU BOUTON <---
 	if est_bloque:
 		style.border_color = Color("#FF0000") # Bordure rouge si bloqué
 		btn.disabled = true
 	else:
 		btn.pressed.connect(_on_choice_made.bind(opt))
 		
+	# On dit à Godot d'utiliser nos styles au lieu du gris par défaut
 	btn.add_theme_stylebox_override("normal", style)
+	btn.add_theme_stylebox_override("hover", style_hover) # Quand la souris est dessus
+	btn.add_theme_stylebox_override("pressed", style_hover) # Quand on clique dessus
+	
+	# Astuce de pro : on enlève aussi la bordure de "focus" (le cadre gris qui reste après avoir cliqué)
+	btn.add_theme_stylebox_override("focus", style) 
+	
 	choices_container.add_child(btn)
 
 func _on_choice_made(opt: Dictionary):
