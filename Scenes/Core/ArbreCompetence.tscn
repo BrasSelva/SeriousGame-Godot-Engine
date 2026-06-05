@@ -40,23 +40,44 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ibl5"]
-bg_color = Color(0.2, 0.13333334, 0, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 0.6, 0, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wvr3v"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.06666667, 0.06666667, 0.06666667, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.87058824, 0.36862746, 0.16078432, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uicw"]
+bg_color = Color(0.16862746, 0.98039216, 0.98039216, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u4br8"]
+bg_color = Color(1, 0.32156864, 0.0627451, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="ArbreCompetences" type="Control" unique_id=365033807]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -8.0
+offset_right = 16.0
+offset_bottom = -53.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
@@ -77,7 +98,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -5.0
 offset_right = 0.03503418
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -182,35 +205,59 @@ size_flags_horizontal = 4
 theme_override_styles/normal = SubResource("StyleBoxFlat_wysdt")
 text = "RETOUR À LA MISSION"
 
-[node name="SkillPopup" type="PanelContainer" parent="." unique_id=2034879543]
-visible = false
-layout_mode = 0
-offset_left = 8.0
-offset_right = 8.0
-offset_bottom = 40.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_1ibl5")
+[node name="SkillPopup" type="PanelContainer" parent="." unique_id=1940316189]
+custom_minimum_size = Vector2(450, 400)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.58500004
+anchor_top = 0.393
+anchor_right = 0.58500004
+anchor_bottom = 0.393
+offset_left = 0.4399414
+offset_top = 0.24499512
+offset_right = 667.43994
+offset_bottom = 400.245
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wvr3v")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SkillPopup" unique_id=1207988776]
 layout_mode = 2
+theme_override_constants/separation = 20
 
 [node name="Title" type="Label" parent="SkillPopup/VBoxContainer" unique_id=1984717135]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "DÉBLOQUER COMPÉTENCE"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="SkillPopup/VBoxContainer" unique_id=1091835720]
+layout_mode = 2
 
 [node name="Desc" type="Label" parent="SkillPopup/VBoxContainer" unique_id=480725235]
 layout_mode = 2
-text = "L'IA propose une image froide..."
+theme_override_font_sizes/font_size = 20
+text = "Le client la trouve 'sans âme'. Comment lui donner vie ?"
+horizontal_alignment = 1
 
 [node name="ChoiceA" type="Button" parent="SkillPopup/VBoxContainer" unique_id=2101356387]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_2uicw")
+text = "RÉPONSE A : Générer une surcouche de détails avec un traitement hyper-réaliste."
+autowrap_mode = 2
 
 [node name="ChoiceB" type="Button" parent="SkillPopup/VBoxContainer" unique_id=1491278605]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_u4br8")
+text = "RÉPONSE B : Modifier le prompt (clair-obscur, grain, couleurs nostalgiques)."
+autowrap_mode = 2
 
 [node name="BadgeText" type="Label" parent="SkillPopup/VBoxContainer" unique_id=614368200]
 layout_mode = 2
-text = "BADGE DÉBLOQUÉ"
-
-[node name="BtnRetour" type="Button" parent="SkillPopup" unique_id=1510189901]
-layout_mode = 2
-text = "RETOUR À LA MISSION"
+theme_override_font_sizes/font_size = 19
+text = "BADGE DÉBLOQUÉ !"
+horizontal_alignment = 1

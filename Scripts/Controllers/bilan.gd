@@ -1,28 +1,44 @@
 extends Control
 
-# On fait le lien avec le Label de ton interface
-@onready var label_affichage = $LabelBilan 
+# --- RÉFÉRENCES AUX NŒUDS ---
+# (Vérifie bien que les chemins correspondent à ton arbre de scène !)
+@onready var texte_humain = $ColorRect/PanelContainer/VBoxContainer/TexteHumain
+@onready var barre_humain = $ColorRect/PanelContainer/VBoxContainer/BarreHumain
+
+@onready var texte_ia = $ColorRect/PanelContainer/VBoxContainer/TexteIA
+@onready var barre_ia = $ColorRect/PanelContainer/VBoxContainer/BarreIA
+
+@onready var texte_qualite = $ColorRect/PanelContainer/VBoxContainer/TexteQualite
+@onready var texte_temps = $ColorRect/PanelContainer/VBoxContainer/TexteTemps
+@onready var btn_envoyer = $ColorRect/PanelContainer/VBoxContainer/SendButton
 
 func _ready():
-	# On affiche les scores
-	label_affichage.text = "Scores : " + str(GameManager.human_score) # etc...
+	# 1. MISE À JOUR DES TEXTES
+	texte_humain.text = "Symbiose Humaine : " + str(GameManager.human_score) + "%"
+	texte_ia.text = "Efficacité IA : " + str(GameManager.ai_score) + "%"
+	texte_qualite.text = "Qualité finale de l'œuvre : " + str(GameManager.quality_score) + "%"
 	
-	# FORCE la connexion du bouton par le code
-	# Remplace $SendButton par le nom exact de ton bouton dans la scène
-	$SendButton.pressed.connect(_on_send_scores_pressed)
-
-	var texte = "--- BILAN DE LA MISSION ---\n\n"
-	texte += "Score Humain : " + str(GameManager.human_score) + "%\n"
-	texte += "Score IA : " + str(GameManager.ai_score) + "%\n"
-	texte += "Qualité : " + str(GameManager.quality_score) + "%\n"
-	texte += "Temps utilisé : " + str(4 - GameManager.time_left) + "h"
+	# Petite astuce pour le temps : 
+	# Le joueur a commencé avec 4h. S'il lui reste 2h, il a utilisé 2h.
+	var temps_utilise = 4 - GameManager.time_left
+	texte_temps.text = "Temps de production utilisé : " + str(temps_utilise) + "h"
 	
-	label_affichage.text = texte
+	# 2. PRÉPARATION DES BARRES DE PROGRESSION
+	# On s'assure qu'elles commencent à zéro pour l'effet visuel
+	barre_humain.value = 0
+	barre_ia.value = 0
+	
+	# 3. ANIMATION MAGIQUE (TWEEN)
+	# On crée une animation qui lit les variables de ton GameManager
+	var tween = create_tween().set_parallel(true)
+	tween.tween_property(barre_humain, "value", float(GameManager.human_score), 1.5).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+	tween.tween_property(barre_ia, "value", float(GameManager.ai_score), 1.5).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+	
+	# 4. CONNEXION DU BOUTON
+	btn_envoyer.pressed.connect(_on_btn_envoyer_pressed)
 
-func _on_send_scores_pressed():
-	print("--- LE BOUTON A ÉTÉ CLIQUÉ ! ---") # Ajoute cette ligne
-	var scores_pour_supabase = {
-		"human": GameManager.human_score,
-		"ai": GameManager.ai_score
-	}
-	Network.send_score_to_db("joueur_youcef_test", scores_pour_supabase)
+func _on_btn_envoyer_pressed():
+	print("Scores envoyés à l'entreprise !")
+	# Pour l'instant, on quitte le jeu. 
+	# Plus tard, tu pourras charger ton menu principal ici !
+	get_tree().quit()
