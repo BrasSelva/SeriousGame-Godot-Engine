@@ -2,6 +2,9 @@ extends Control
 
 var scenario_data: Dictionary = {}
 
+var current_node_id: String = ""
+var step_counter: int = 0
+
 @onready var mission_title = $TopTitles/MissionTitle
 @onready var story_text = $MainLayout/CenterPanel_Story/StoryBox/VBoxContainer/StoryText
 @onready var choices_container = $MainLayout/CenterPanel_Story/ChoicesContainer
@@ -15,35 +18,28 @@ func _ready():
 	if perso_youcef != null and is_instance_valid(perso_youcef):
 		if perso_youcef.has_node("AnimatedSprite2D"):
 			perso_youcef.get_node("AnimatedSprite2D").play("idle")
-			print("Youcef est animé dans la scène principale !")
 
 	scenario_data = load_scenario_from_file(GameManager.get_scenario_path())
 	afficher_noeud("start")
 
 func load_scenario_from_file(file_path: String) -> Dictionary:
-	print("--- Recherche du fichier à : ", file_path)
 	if not FileAccess.file_exists(file_path):
-		print("❌ ERREUR : Fichier scénario introuvable !")
 		return {}
 
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	var content = file.get_as_text()
-
 	var json = JSON.new()
 	var error = json.parse(content)
 	if error == OK:
-		print("✅ JSON chargé avec succès !")
 		return json.data
-	else:
-		print("❌ ERREUR de lecture JSON")
-		return {}
+	return {}
 
 func afficher_noeud(node_id: String):
+	current_node_id = node_id
 	for child in choices_container.get_children():
 		child.queue_free()
 
 	if not scenario_data.has("nodes") or not scenario_data["nodes"].has(node_id):
-		story_text.text = "❌ ERREUR : Le nœud '" + node_id + "' est introuvable."
 		return
 
 	var current_node = scenario_data["nodes"][node_id]
@@ -82,8 +78,7 @@ func afficher_noeud(node_id: String):
 
 	story_text.visible_characters = 0
 	ecriture_tween = create_tween()
-	var vitesse = 0.02
-	var temps_ecriture = story_text.text.length() * vitesse
+	var temps_ecriture = story_text.text.length() * 0.02
 	ecriture_tween.tween_property(story_text, "visible_characters", story_text.text.length(), temps_ecriture)
 
 	var options = current_node["options"]
@@ -139,6 +134,13 @@ func creer_bouton_choix(opt: Dictionary):
 	choices_container.add_child(btn)
 
 func _on_choice_made(opt: Dictionary):
+	step_counter += 1
+	var user_id = GameManager.current_user_id
+	var nom_du_choix = opt["text"]
+	var vrai_scenario_id = GameManager.scenarios_uuids.get(GameManager.current_mission, "")
+	
+	if user_id != "" and vrai_scenario_id != "":
+		Network.send_choice_to_db(vrai_scenario_id, current_node_id, nom_du_choix, step_counter, user_id)
 	var h_impact = opt.get("impact_human_core", 0)
 	var ai_impact = opt.get("impact_ai_synergy", 0)
 	var q_impact = opt.get("impact_quality", 0)

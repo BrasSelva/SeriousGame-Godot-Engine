@@ -1,16 +1,25 @@
 extends Node
 
-# Statistiques globales du joueur
+# --- RÉSEAU ET PROGRESSION ---
+var current_user_id: String = ""
+var missions_terminees: Array = []
+
+# NOUVEAU : Le traducteur d'identifiants pour Supabase !
+var scenarios_uuids = {
+	1: "a7700388-f339-4637-8127-63c1a95d7ac8", # Ta mission 1 (Affiche)
+	2: "1817f4bb-a79b-4034-87e6-e39de3c9caad",  # <-- À remplacer
+	3: "d72b4517-7288-4d3b-9e2a-3d6e296a60f3"   # <-- À remplacer
+}
+
+# --- STATISTIQUES ---
 var human_score: int = 50
 var ai_score: int = 50
 var quality_score: int = 0
 var time_left: int = 4
 
-# Gestion des missions
+# --- GESTION DES MISSIONS ---
 var current_mission: int = 1
 var max_missions: int = 3
-
-# Liste des compétences débloquées
 var unlocked_skills: Array = []
 
 func update_youcef_stats(h_delta: int, ai_delta: int, q_delta: int, t_delta: int):

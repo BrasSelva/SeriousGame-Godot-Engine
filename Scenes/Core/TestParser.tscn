@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://0tdfbjmoyrex"]
+[gd_scene format=3 uid="uid://b1b5cf8kmvms3"]
 
 [ext_resource type="Script" uid="uid://clc3i6rh2nkhg" path="res://Scripts/Utils/ScenarioParser.gd" id="1_xnajp"]
 [ext_resource type="Texture2D" uid="uid://bxodmortvbhxr" path="res://_Assets/Images/backgrounds/background_sci_fi.png" id="2_6ywjb"]
