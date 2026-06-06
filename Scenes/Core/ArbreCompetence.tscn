@@ -162,9 +162,20 @@ text = "IA"
 label_settings = SubResource("LabelSettings_fggxw")
 autowrap_trim_flags = 128
 
+[node name="BtnCompIA" type="Button" parent="MainColumn/BrainArea/MainLayout/LeftIA" unique_id=983129504]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 178.0
+offset_right = 892.0
+offset_bottom = 208.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_fggxw")
+text = "Direction Artistique"
+
 [node name="BrainImage" type="TextureRect" parent="MainColumn/BrainArea/MainLayout" unique_id=919318871]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Nodes" type="Node2D" parent="MainColumn/BrainArea/MainLayout/BrainImage" unique_id=1146881803]
 position = Vector2(416, 178)

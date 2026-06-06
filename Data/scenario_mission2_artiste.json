@@ -12,7 +12,8 @@
 	},
 	"nodes": {
 		"start": {
-			"text": "MISSION 2 : CAMPAGNE RÉSEAUX SOCIAUX 2035.\n\nUn influenceur veut une série de 10 visuels cohérents pour lancer sa marque. Il exige une identité forte et reconnaissable sur chaque post.",
+			"text": "MISSION 2 : CAMPAGNE RÉSEAUX SOCIAUX 2035.",
+			"description": "Un influenceur veut une série de 10 visuels cohérents pour lancer sa marque. Il exige une identité forte et reconnaissable sur chaque post.",
 			"options": [
 				{
 					"text": "Générer les visuels un par un avec l'IA",
@@ -38,6 +39,7 @@
 		},
 		"fin_echec_incoherence": {
 			"text": "RÉSULTAT DÉCEVANT !\n\nLes 10 visuels ne se ressemblent pas. L'influenceur est déçu : \"C'est beau individuellement mais ça ne forme pas une identité cohérente.\"\n\nTu dois maîtriser le Prompt Engineering pour contrôler l'IA.",
+			"image": "res://_Assets/Images/feed_incoherent.jpg",
 			"options": [
 				{
 					"text": "Aller débloquer la compétence (Arbre)",

@@ -38,7 +38,10 @@ func _ready():
 	btn_envoyer.pressed.connect(_on_btn_envoyer_pressed)
 
 func _on_btn_envoyer_pressed():
-	print("Scores envoyés à l'entreprise !")
-	# Pour l'instant, on quitte le jeu. 
-	# Plus tard, tu pourras charger ton menu principal ici !
-	get_tree().quit()
+	print("Scores envoyés !")
+	if GameManager.current_mission < GameManager.max_missions:
+		GameManager.next_mission()
+		get_tree().change_scene_to_file("res://Scenes/Core/ScenarioParser.tscn")
+	else:
+		print("Toutes les missions terminées !")
+		get_tree().quit()

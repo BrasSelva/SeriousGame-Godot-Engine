@@ -1,51 +1,64 @@
 {
-  "nodes": {
-	"start": {
-	  "text": "MISSION : AFFICHE FESTIVAL NEO-JAZZ 2035.\n\nLe client exige un visuel capturant la mélancolie futuriste des nuits de 2035. Comment procédez-vous ?",
-	  "options": [
-		{
-		  "text": "Lancer la production IA en mode automatique",
-		  "impact_human_core": -30,
-		  "impact_ai_synergy": 30,
-		  "time_cost": 1,
-		  "next_node": "fin_echec_ia"
+	"mission_id": "mission_1_artiste",
+	"competence": {
+		"id": "dir_art",
+		"label": "Direction Artistique",
+		"cote": "humain",
+		"question": "L'IA propose une image froide. Comment lui redonner de l'émotion ?",
+		"reponse_a": "Je demande plus de pixels.",
+		"reponse_b": "Je modifie le prompt pour ajouter des textures imparfaites et une lumière chaude.",
+		"bonne_reponse": "B",
+		"badge": "BADGE DÉBLOQUÉ : DIRECTION ARTISTIQUE"
+	},
+	"nodes": {
+		"start": {
+			"text": "MISSION 1 : AFFICHE FESTIVAL NEO-JAZZ 2035.",
+			"description": "Le Directeur Artistique du Blue Moon Club vous confie la création de l'affiche officielle du festival. Il exige un visuel capturant la mélancolie futuriste des nuits de 2035.",
+			"options": [
+				{
+					"text": "Lancer la production IA en mode automatique",
+					"impact_human_core": -30,
+					"impact_ai_synergy": 30,
+					"time_cost": 1,
+					"next_node": "fin_echec_ia"
+				},
+				{
+					"text": "Appliquer ma 'Direction Artistique' sur l'IA",
+					"condition_skill": "dir_art",
+					"impact_quality": 95,
+					"impact_human_core": 20,
+					"time_cost": 2,
+					"next_node": "fin_succes"
+				},
+				{
+					"text": "Visiter l'Arbre de Compétences",
+					"next_node": "aller_vers_arbre"
+				}
+			]
 		},
-		{
-		  "text": "Appliquer ma 'Direction Artistique' sur l'IA",
-		  "condition_skill": "dir_art",
-		  "impact_quality": 95,
-		  "impact_human_core": 20,
-		  "time_cost": 2,
-		  "next_node": "fin_succes"
+		"fin_echec_ia": {
+			"text": "ECHEC ! Le client rejette l'affiche : \"C'EST BEAU MAIS C'EST VIDE !\"\n\nL'IA a manqué d'âme. Allez-vous prendre le temps d'étudier la Direction Artistique, ou forcer la livraison au risque de décevoir le client ?",
+			"image": "res://_Assets/Images/saxophone.png",
+			"options": [
+				{
+					"text": "Aller débloquer la compétence (Arbre)",
+					"next_node": "aller_vers_arbre"
+				},
+				{
+					"text": "Livrer l'affiche telle quelle (Fin de mission)",
+					"impact_quality": -50,
+					"time_cost": 0,
+					"next_node": "fin_mauvaise"
+				}
+			]
 		},
-		{
-		  "text": "Visiter l'Arbre de Compétences",
-		  "next_node": "aller_vers_arbre"
+		"fin_succes": {
+			"text": "SUCCÈS TOTAL !\n\nL'affiche est magnifique. Le client est ravi de la touche d'émotion humaine qui se dégage du visuel généré. Symbiose parfaite atteinte.",
+			"options": []
+		},
+		"fin_mauvaise": {
+			"text": "ÉCHEC CRITIQUE...\n\nVous avez forcé la livraison. Le client a refusé de payer et la réputation du studio en a pris un coup. L'IA seule n'a pas suffi.",
+			"options": []
 		}
-	  ]
-	},
-	"fin_echec_ia": {
-	  "text": "ECHEC ! Le client rejette l'affiche : \"C'EST BEAU MAIS C'EST VIDE !\"\n\nL'IA a manqué d'âme. Allez-vous prendre le temps d'étudier la Direction Artistique, ou forcer la livraison au risque de décevoir le client ?",
-	  "options": [
-		{
-		  "text": "Aller débloquer la compétence (Arbre)",
-		  "next_node": "aller_vers_arbre"
-		},
-		{
-		  "text": "Livrer l'affiche telle quelle (Fin de mission)",
-		  "impact_quality": -50,
-		  "time_cost": 0,
-		  "next_node": "fin_mauvaise"
-		}
-	  ]
-	},
-	"fin_succes": {
-	  "text": "SUCCÈS TOTAL !\n\nL'affiche est magnifique. Le client est ravi de la touche d'émotion humaine qui se dégage du visuel généré. Symbiose parfaite atteinte.",
-	  "options": []
-	},
-	"fin_mauvaise": {
-	  "text": "ÉCHEC CRITIQUE...\n\nVous avez forcé la livraison. Le client a refusé de payer et la réputation du studio en a pris un coup. L'IA seule n'a pas suffi.",
-	  "options": []
 	}
-  }
 }
