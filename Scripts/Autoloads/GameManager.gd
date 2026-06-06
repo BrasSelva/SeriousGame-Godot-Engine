@@ -1,6 +1,13 @@
 extends Node
 
-# Statistiques globales du joueur
+# --- RÉSEAU ET PROGRESSION ---
+# L'ID unique du joueur (récupéré via Supabase lors de la connexion)
+var current_user_id: String = ""
+# Historique des missions terminées pour débloquer la suite
+var missions_terminees: Array = []
+
+
+# --- STATISTIQUES GLOBALES ---
 var human_score: int = 50  # Neutre au début
 var ai_score: int = 50     # Neutre au début
 var quality_score: int = 0 # L'affiche n'est pas encore créée
@@ -9,7 +16,9 @@ var time_left: int = 4
 # Liste des compétences débloquées
 var unlocked_skills: Array = []
 
-# FONCTION CORRIGÉE : On ajoute le typage ': int' aux arguments pour éviter les bugs
+
+# --- FONCTIONS ---
+# On ajoute le typage ': int' aux arguments pour éviter les bugs
 func update_youcef_stats(h_delta: int, ai_delta: int, q_delta: int, t_delta: int):
 	human_score = clamp(human_score + h_delta, 0, 100)
 	ai_score = clamp(ai_score + ai_delta, 0, 100)

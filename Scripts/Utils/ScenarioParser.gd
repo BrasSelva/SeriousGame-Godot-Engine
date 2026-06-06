@@ -2,6 +2,12 @@ extends Control
 
 var scenario_data: Dictionary = {}
 
+# --- [NOUVEAU] VARIABLES DE TRACKING ---
+var current_node_id: String = ""
+var step_counter: int = 0
+var current_scenario_id: String = "a7700388-f339-4637-8127-63c1a95d7ac8" # Ton ID de mission
+# ---------------------------------------
+
 # Références vers les nœuds de ton interface
 @onready var mission_title = $TopTitles/MissionTitle
 @onready var story_text = $MainLayout/CenterPanel_Story/StoryBox/VBoxContainer/StoryText
@@ -13,7 +19,7 @@ var scenario_data: Dictionary = {}
 var ecriture_tween: Tween
 
 func _ready():
-	# ---> NOUVEAU : Lance l'animation de Youcef au démarrage <---
+	# Lance l'animation de Youcef au démarrage
 	if perso_youcef and perso_youcef.has_node("AnimatedSprite2D"):
 		perso_youcef.get_node("AnimatedSprite2D").play("idle")
 		print("Youcef est animé dans la scène principale !")
@@ -42,6 +48,10 @@ func load_scenario_from_file(file_path: String) -> Dictionary:
 		return {}
 
 func afficher_noeud(node_id: String):
+	# --- [NOUVEAU] On mémorise le nœud actuel pour le tracking ---
+	current_node_id = node_id
+	# --------------------------------------------------------------
+	
 	# On nettoie les anciens boutons d'options
 	for child in choices_container.get_children():
 		child.queue_free()
@@ -55,15 +65,12 @@ func afficher_noeud(node_id: String):
 	label_temps.text = str(GameManager.time_left) + "H"
 
 	# Gestion des affichages spécifiques aux nœuds et des images
-	# 1. On cible la boîte rouge pour pouvoir la cacher/afficher
 	var cadre_rouge = $MainLayout/CenterPanel_Story/StoryBox/VBoxContainer/BorderIllustration
-	# 2. On cible l'image à l'intérieur pour changer la photo
 	var illustration = cadre_rouge.get_node("Illustration")
 	
 	if node_id == "start":
 		mission_title.text = current_node["text"]
 		story_text.text = "Le Directeur Artistique du Blue Moon Club vous confie la création de l'affiche officielle du festival. Il exige un visuel capturant la mélancolie futuriste des nuits de 2035."
-		# On cache TOUTE la boîte rouge
 		if cadre_rouge:
 			cadre_rouge.hide()
 			
@@ -71,20 +78,17 @@ func afficher_noeud(node_id: String):
 		story_text.text = current_node["text"]
 		story_text.add_theme_color_override("default_color", Color.RED)
 		if illustration:
-			illustration.texture = load("res://_Assets/Images/saxophone.png") # Ajuste si besoin
-		# On affiche TOUTE la boîte rouge avec l'image dedans
+			illustration.texture = load("res://_Assets/Images/saxophone.png")
 		if cadre_rouge:
 			cadre_rouge.show()
 			
 	else:
 		story_text.text = current_node["text"]
 		story_text.add_theme_color_override("default_color", Color.WHITE)
-		# On cache TOUTE la boîte rouge pour les autres moments de l'histoire
 		if cadre_rouge:
 			cadre_rouge.hide()
 
 	# --- EFFET MACHINE À ÉCRIRE SÉCURISÉ ---
-	# Si un effet d'écriture tournait déjà, on l'arrête proprement
 	if ecriture_tween and ecriture_tween.is_running():
 		ecriture_tween.kill()
 		
@@ -97,13 +101,11 @@ func afficher_noeud(node_id: String):
 	
 	var options = current_node["options"]
 	
-	# Si aucun choix (fin du scénario), on attend et on change de scène
 	if options.size() == 0:
 		await get_tree().create_timer(3.0).timeout
 		get_tree().change_scene_to_file("res://Scenes/Core/Bilan.tscn")
 		return
 		
-	# Génération des boutons pour chaque option disponible
 	for opt in options:
 		creer_bouton_choix(opt)
 
@@ -112,72 +114,65 @@ func creer_bouton_choix(opt: Dictionary):
 	var text_bouton = opt["text"]
 	var est_bloque = false
 	
-	# Vérification de la compétence requise
 	if opt.has("condition_skill"):
 		if not GameManager.has_skill(opt["condition_skill"]):
 			est_bloque = true
 			text_bouton = "[BLOQUÉ] " + text_bouton
 	
 	btn.text = text_bouton
-	btn.custom_minimum_size = Vector2(0, 60) # Hauteur confortable pour le clic
+	btn.custom_minimum_size = Vector2(0, 60) 
 	
-# Ton design "Cyber" normal
 	var style = StyleBoxFlat.new()
-	style.bg_color = Color("#2D3773", 0.8) # Fond sombre translucide
+	style.bg_color = Color("#2D3773", 0.8) 
 	style.border_width_bottom = 2
 	style.border_width_top = 2
 	style.border_width_left = 2
 	style.border_width_right = 2
-	style.border_color = Color("#6871E8") # Bordure
+	style.border_color = Color("#6871E8") 
 	style.corner_radius_top_left = 15
 	style.corner_radius_top_right = 15
 	style.corner_radius_bottom_left = 15
 	style.corner_radius_bottom_right = 15
 	
-	# ---> LA MAGIE POUR LE SURVOL (HOVER) <---
-	# 1. On clone le style (ça copie les bordures et les coins ronds automatiquement !)
 	var style_hover = style.duplicate()
+	style_hover.bg_color = Color("#3A4694", 0.95) 
+	style_hover.border_color = Color("#8D95FF") 
 	
-	# 2. On modifie juste la couleur de fond et la bordure du clone pour qu'il s'illumine
-	style_hover.bg_color = Color("#3A4694", 0.95) # Un bleu un peu plus clair et opaque
-	style_hover.border_color = Color("#8D95FF") # Une bordure encore plus lumineuse
-	
-	# ---> APPLICATION DES STYLES AU BOUTON <---
 	if est_bloque:
-		style.border_color = Color("#FF0000") # Bordure rouge si bloqué
+		style.border_color = Color("#FF0000") 
 		btn.disabled = true
 	else:
 		btn.pressed.connect(_on_choice_made.bind(opt))
 		
-	# On dit à Godot d'utiliser nos styles au lieu du gris par défaut
 	btn.add_theme_stylebox_override("normal", style)
-	btn.add_theme_stylebox_override("hover", style_hover) # Quand la souris est dessus
-	btn.add_theme_stylebox_override("pressed", style_hover) # Quand on clique dessus
-	
-	# Astuce de pro : on enlève aussi la bordure de "focus" (le cadre gris qui reste après avoir cliqué)
+	btn.add_theme_stylebox_override("hover", style_hover) 
+	btn.add_theme_stylebox_override("pressed", style_hover) 
 	btn.add_theme_stylebox_override("focus", style) 
 	
 	choices_container.add_child(btn)
 
 func _on_choice_made(opt: Dictionary):
-	# Récupération des impacts sur les statistiques
+	# --- [NOUVEAU] ENVOI DU TRACKING A SUPABASE ---
+	step_counter += 1
+	var user_id = GameManager.current_user_id
+	var nom_du_choix = opt["text"] # On utilise le texte du bouton comme ID de l'option
+	
+	if user_id != "":
+		Network.send_choice_to_db(current_scenario_id, current_node_id, nom_du_choix, step_counter, user_id)
+	# ----------------------------------------------
+	
 	var h_impact = opt.get("impact_human_core", 0)
 	var ai_impact = opt.get("impact_ai_synergy", 0)
 	var q_impact = opt.get("impact_quality", 0)
 	var t_spent = opt.get("time_cost", 0)
 	
-	# Mise à jour globale dans le GameManager
 	GameManager.update_youcef_stats(h_impact, ai_impact, q_impact, t_spent)
 	
-	# Déblocage de compétence si mentionné (au cas où on le fait via le texte)
 	if opt.has("unlock_skill"):
 		GameManager.unlock_skill(opt["unlock_skill"])
 		
-	# ---> LE PORTAIL VERS TON INTERFACE VISUELLE <---
-	# On cherche le mot "aller_vers_arbre" défini dans le JSON
 	if opt.has("next_node") and opt["next_node"] == "aller_vers_arbre":
 		get_tree().change_scene_to_file("res://Scenes/Core/ArbreCompetence.tscn")
-		return # On stoppe la fonction ici pour changer d'écran !
+		return 
 		
-	# Transition vers le nœud suivant classique (si ce n'est pas l'arbre)
 	afficher_noeud(opt["next_node"])
