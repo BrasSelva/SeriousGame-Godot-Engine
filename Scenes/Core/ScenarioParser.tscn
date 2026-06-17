@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://clc3i6rh2nkhg" path="res://Scripts/Utils/ScenarioParser.gd" id="1_iajxc"]
 [ext_resource type="Texture2D" uid="uid://bxodmortvbhxr" path="res://_Assets/Images/backgrounds/background_sci_fi.png" id="2_lynfm"]
-[ext_resource type="PackedScene" uid="uid://cqd2njmmyes5n" path="res://Scenes/Core/idle_artiste.tscn" id="3_cvtlb"]
+[ext_resource type="PackedScene" uid="uid://dtrpl4chqloo2" path="res://Scenes/Core/idle_artiste.tscn" id="3_cvtlb"]
 [ext_resource type="Texture2D" uid="uid://codnr1fptedil" path="res://_Assets/Images/saxophone.png" id="4_5ahm8"]
+[ext_resource type="PackedScene" uid="uid://cqd2njmmyes5n" path="res://Scenes/Core/arms_cross_artiste.tscn" id="4_lynfm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iajxc"]
 bg_color = Color(0.20784314, 0.24705882, 0.52156866, 0.6392157)
@@ -73,7 +74,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -66.0
+offset_left = -9.0
+offset_top = -71.0
 offset_bottom = -66.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -115,7 +117,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Node2D" parent="MainLayout/LeftPanel_Perso" unique_id=1972595146 instance=ExtResource("3_cvtlb")]
-position = Vector2(243, 714)
+position = Vector2(401, 700)
+
+[node name="Node2D2" parent="MainLayout/LeftPanel_Perso" unique_id=1785609953 instance=ExtResource("4_lynfm")]
+position = Vector2(401, 745)
+script = null
 
 [node name="CenterPanel_Story" type="VBoxContainer" parent="MainLayout" unique_id=1737113999]
 custom_minimum_size = Vector2(600, 0)

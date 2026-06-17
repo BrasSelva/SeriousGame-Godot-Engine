@@ -60,6 +60,7 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_13omm")
 placeholder_text = "Mot de passe"
+secret = true
 
 [node name="LabelErreur" type="Label" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=550177732]
 layout_mode = 2

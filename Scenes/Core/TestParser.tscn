@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://b1b5cf8kmvms3"]
+[gd_scene format=3 uid="uid://0tdfbjmoyrex"]
 
 [ext_resource type="Script" uid="uid://clc3i6rh2nkhg" path="res://Scripts/Utils/ScenarioParser.gd" id="1_xnajp"]
 [ext_resource type="Texture2D" uid="uid://bxodmortvbhxr" path="res://_Assets/Images/backgrounds/background_sci_fi.png" id="2_6ywjb"]
-[ext_resource type="PackedScene" uid="uid://cqd2njmmyes5n" path="res://Scenes/Core/idle_artiste.tscn" id="3_0rlx3"]
+[ext_resource type="PackedScene" uid="uid://cqd2njmmyes5n" path="res://Scenes/Core/arms_cross_artiste.tscn" id="3_0rlx3"]
 
 [node name="Control" type="Control" unique_id=21478466]
 layout_mode = 3
