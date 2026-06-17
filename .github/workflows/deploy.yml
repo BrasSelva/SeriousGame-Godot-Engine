@@ -13,7 +13,7 @@ jobs:
       - name: 📥 Récupération du code
         uses: actions/checkout@v4
 
-     - name: ⚙️ Exportation du jeu Godot (WebAssembly)
+    - name: ⚙️ Exportation du jeu Godot (WebAssembly)
         uses: firebelley/godot-export@v5.2.0
         with:
           godot_executable_download_url: https://github.com/godotengine/godot/releases/download/4.2.2-stable/Godot_v4.2.2-stable_linux.x86_64.zip
