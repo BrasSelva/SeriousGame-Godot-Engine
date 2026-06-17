@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://bmdady7p6v7y"]
+
+[ext_resource type="Script" uid="uid://btmmt8gdpmbp1" path="res://Scripts/Controllers/bilan.gd" id="1_wt1h4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wt1h4"]
+bg_color = Color(0.2, 0.2, 0.2, 0.7647059)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oluwo"]
+bg_color = Color(0.92941177, 0.6, 0.101960786, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7tk3"]
+bg_color = Color(0.16862746, 0.98039216, 0.98039216, 1)
+
+[node name="Bilan" type="Control" unique_id=652202860]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 14.0
+offset_right = 24.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wt1h4")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=544506588]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -15.0
+offset_right = -31.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0.27450982, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="ColorRect" unique_id=1699937883]
+custom_minimum_size = Vector2(600, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -250.0
+offset_right = 300.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wt1h4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/PanelContainer" unique_id=556574685]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="TitreBilan" type="Label" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=658682473]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85490197, 0.32156864, 0.12156863, 0.9254902)
+theme_override_font_sizes/font_size = 32
+text = "RAPPORT DE MISSION"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=512124547]
+layout_mode = 2
+
+[node name="TexteHumain" type="Label" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=886913548]
+layout_mode = 2
+text = "Symbiose Humaine : X%"
+
+[node name="BarreHumain" type="ProgressBar" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=487557473]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_oluwo")
+
+[node name="TexteIA" type="Label" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=897639502]
+layout_mode = 2
+text = "Efficacité IA : X%"
+
+[node name="BarreIA" type="ProgressBar" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=1420863841]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_c7tk3")
+
+[node name="HSeparator2" type="HSeparator" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=1583774972]
+layout_mode = 2
+
+[node name="TexteQualite" type="Label" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=2120812410]
+layout_mode = 2
+text = "Qualité finale de l'œuvre : 100%
+"
+
+[node name="TexteTemps" type="Label" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=654760766]
+layout_mode = 2
+text = "Temps de production : 3h"
+
+[node name="SendButton" type="Button" parent="ColorRect/PanelContainer/VBoxContainer" unique_id=1481918063]
+layout_mode = 2
+text = "Envoyer les scores"

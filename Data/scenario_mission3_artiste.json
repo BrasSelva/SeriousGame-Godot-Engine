@@ -1,0 +1,65 @@
+{
+	"mission_id": "mission_3_artiste",
+	"competence": {
+		"id": "sens_critique",
+		"label": "Sens Critique",
+		"cote": "humain",
+		"question": "L'IA te génère 50 logos pour une startup. Comment sélectionnes-tu le meilleur ?",
+		"reponse_a": "Je prends celui qui me plaît visuellement au premier coup d'œil.",
+		"reponse_b": "J'analyse chaque proposition selon les valeurs de la marque, la lisibilité et l'impact émotionnel.",
+		"bonne_reponse": "B",
+		"badge": "BADGE DÉBLOQUÉ : SENS CRITIQUE"
+	},
+	"nodes": {
+		"start": {
+			"text": "MISSION 3 : IDENTITÉ VISUELLE D'UNE STARTUP 2035.",
+			"description": "Une startup tech veut un logo et une charte graphique complète. Elle te fait confiance pour sélectionner et affiner les meilleures propositions de l'IA.",
+			"options": [
+				{
+					"text": "Choisir rapidement un logo IA sans analyse",
+					"impact_human_core": -25,
+					"impact_ai_synergy": 15,
+					"impact_quality": 15,
+					"time_cost": 1,
+					"next_node": "fin_echec_choix"
+				},
+				{
+					"text": "Appliquer mon 'Sens Critique' pour sélectionner",
+					"condition_skill": "sens_critique",
+					"impact_quality": 95,
+					"impact_human_core": 30,
+					"time_cost": 2,
+					"next_node": "fin_succes"
+				},
+				{
+					"text": "Visiter l'Arbre de Compétences",
+					"next_node": "aller_vers_arbre"
+				}
+			]
+		},
+		"fin_echec_choix": {
+			"text": "RÉSULTAT MITIGÉ !\n\nLe logo choisi est générique et ne reflète pas les valeurs de la startup. Le CEO dit : \"L'IA aurait pu faire ça seule. On avait besoin de ton jugement humain.\"\n\nTu dois développer ton Sens Critique.",
+			"image": "res://_Assets/Images/logo_rate.jpg",
+			"options": [
+				{
+					"text": "Aller débloquer la compétence (Arbre)",
+					"next_node": "aller_vers_arbre"
+				},
+				{
+					"text": "Livrer l'identité visuelle telle quelle",
+					"impact_quality": -45,
+					"time_cost": 0,
+					"next_node": "fin_mauvaise"
+				}
+			]
+		},
+		"fin_succes": {
+			"text": "SUCCÈS TOTAL !\n\nTu as sélectionné et affiné le logo parfait. La startup lève 2 millions d'euros et attribue une partie de son succès à son identité visuelle forte. Symbiose humain-IA accomplie.",
+			"options": []
+		},
+		"fin_mauvaise": {
+			"text": "ÉCHEC CRITIQUE...\n\nL'identité visuelle livrée ne convainc pas les investisseurs. La startup perd sa levée de fonds. Sans sens critique humain, l'IA produit du contenu sans âme ni stratégie.",
+			"options": []
+		}
+	}
+}

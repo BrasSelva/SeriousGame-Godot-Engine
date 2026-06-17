@@ -1,0 +1,274 @@
+[gd_scene format=3 uid="uid://bsqs1mw32pxr4"]
+
+[ext_resource type="Texture2D" uid="uid://w1jgmddp2fkc" path="res://_Assets/Images/backgrounds/background_arbre_competence.png" id="1_4fmad"]
+[ext_resource type="Script" uid="uid://b080311qt0kyo" path="res://Scripts/Controllers/ArbreCompetences.gd" id="1_wysdt"]
+[ext_resource type="Texture2D" uid="uid://b80tngog4sb1y" path="res://_Assets/Images/avatar.png" id="3_fggxw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wysdt"]
+font_color = Color(1, 0.5411765, 0.07058824, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fggxw"]
+font_size = 50
+font_color = Color(0.32606977, 0.67561567, 0.969899, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fggxw"]
+bg_color = Color(0, 0, 0, 0.63529414)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.7507681, 0.29907474, 0.038720995, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_wvr3v"]
+font_size = 50
+font_color = Color(1, 0.7331608, 0.5480255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wysdt"]
+bg_color = Color(0.039215688, 0.0627451, 0.25490198, 0.41568628)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wvr3v"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.06666667, 0.06666667, 0.06666667, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.87058824, 0.36862746, 0.16078432, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uicw"]
+bg_color = Color(0.16862746, 0.98039216, 0.98039216, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u4br8"]
+bg_color = Color(1, 0.32156864, 0.0627451, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="ArbreCompetences" type="Control" unique_id=365033807]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+offset_right = 16.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("1_wysdt")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1382902661]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4fmad")
+expand_mode = 1
+
+[node name="MainColumn" type="VBoxContainer" parent="." unique_id=1354264347]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -5.0
+offset_right = 0.03503418
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopHeader" type="HBoxContainer" parent="MainColumn" unique_id=904485575]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ProfilePic" type="TextureRect" parent="MainColumn/TopHeader" unique_id=1873474669]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("3_fggxw")
+stretch_mode = 4
+
+[node name="Header" type="VBoxContainer" parent="MainColumn/TopHeader" unique_id=1824085861]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="MainTitle" type="Label" parent="MainColumn/TopHeader/Header" unique_id=473172312]
+layout_mode = 2
+text = "TON FUTUR AUGMENTÉ EN TANT QU'ARTISTE 2035"
+label_settings = SubResource("LabelSettings_wysdt")
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="MainColumn/TopHeader/Header" unique_id=1096279514]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "ARBRE DE COMPÉTENCES HYBRIDE"
+horizontal_alignment = 1
+
+[node name="BrainArea" type="HBoxContainer" parent="MainColumn" unique_id=1990191337]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MainLayout" type="HBoxContainer" parent="MainColumn/BrainArea" unique_id=481273256]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LeftIA" type="Control" parent="MainColumn/BrainArea/MainLayout" unique_id=1885048296]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LabelIA" type="Label" parent="MainColumn/BrainArea/MainLayout/LeftIA" unique_id=862349740]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.82100004
+anchor_top = 0.086
+anchor_right = 0.82100004
+anchor_bottom = 0.086
+offset_left = -64.97705
+offset_top = -34.536003
+offset_right = -16.97705
+offset_bottom = 34.463997
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "IA"
+label_settings = SubResource("LabelSettings_fggxw")
+autowrap_trim_flags = 128
+
+[node name="BtnCompIA" type="Button" parent="MainColumn/BrainArea/MainLayout/LeftIA" unique_id=983129504]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 178.0
+offset_right = 892.0
+offset_bottom = 208.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_fggxw")
+text = "Direction Artistique"
+
+[node name="BrainImage" type="TextureRect" parent="MainColumn/BrainArea/MainLayout" unique_id=919318871]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Nodes" type="Node2D" parent="MainColumn/BrainArea/MainLayout/BrainImage" unique_id=1146881803]
+position = Vector2(416, 178)
+
+[node name="BtnDirArt" type="Button" parent="MainColumn/BrainArea/MainLayout/BrainImage/Nodes" unique_id=1039197131]
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_fggxw")
+text = "Direction Artistique"
+
+[node name="RightHuman" type="Control" parent="MainColumn/BrainArea/MainLayout" unique_id=573664290]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LabelHuman" type="Label" parent="MainColumn/BrainArea/MainLayout/RightHuman" unique_id=1600854821]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.418
+anchor_top = 0.11000001
+anchor_right = 0.418
+anchor_bottom = 0.11000001
+offset_left = -30.684021
+offset_top = -14.860008
+offset_right = 31.315979
+offset_bottom = 15.139992
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "HUMAN"
+label_settings = SubResource("LabelSettings_wvr3v")
+horizontal_alignment = 2
+
+[node name="BtnRetour" type="Button" parent="MainColumn" unique_id=631307175]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_wysdt")
+text = "RETOUR À LA MISSION"
+
+[node name="SkillPopup" type="PanelContainer" parent="." unique_id=1940316189]
+custom_minimum_size = Vector2(450, 400)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.58500004
+anchor_top = 0.393
+anchor_right = 0.58500004
+anchor_bottom = 0.393
+offset_left = 0.4399414
+offset_top = 0.24499512
+offset_right = 667.43994
+offset_bottom = 400.245
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wvr3v")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SkillPopup" unique_id=1207988776]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="SkillPopup/VBoxContainer" unique_id=1984717135]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "DÉBLOQUER COMPÉTENCE"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="SkillPopup/VBoxContainer" unique_id=1091835720]
+layout_mode = 2
+
+[node name="Desc" type="Label" parent="SkillPopup/VBoxContainer" unique_id=480725235]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Le client la trouve 'sans âme'. Comment lui donner vie ?"
+horizontal_alignment = 1
+
+[node name="ChoiceA" type="Button" parent="SkillPopup/VBoxContainer" unique_id=2101356387]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_2uicw")
+text = "RÉPONSE A : Générer une surcouche de détails avec un traitement hyper-réaliste."
+autowrap_mode = 2
+
+[node name="ChoiceB" type="Button" parent="SkillPopup/VBoxContainer" unique_id=1491278605]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_u4br8")
+text = "RÉPONSE B : Modifier le prompt (clair-obscur, grain, couleurs nostalgiques)."
+autowrap_mode = 2
+
+[node name="BadgeText" type="Label" parent="SkillPopup/VBoxContainer" unique_id=614368200]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "BADGE DÉBLOQUÉ !"
+horizontal_alignment = 1

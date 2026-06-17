@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://jjybh7t0tof0"]
+
+[ext_resource type="Texture2D" uid="uid://ckbc11ku7nrhk" path="res://_Assets/Fonts/fond sombre.jpg" id="2_8c456"]
+
+[sub_resource type="GDScript" id="GDScript_cfcu6"]
+script/source = "extends Control
+
+func _ready():
+	# On connecte les signaux de chaque bouton
+	# Assure-toi que les chemins ($HBox/Youcef/Button) correspondent à tes noms de nœuds
+	$HBox/Youcef/Button.pressed.connect(_on_youcef_selected)
+	$HBox/Lydia/Button.pressed.connect(_on_lydia_selected)
+	$HBox/Maissaa/Button.pressed.connect(_on_maissaa_selected)
+
+func _on_youcef_selected():
+	# ÉTAPE CRUCIALE : On dit au GameManager quel scénario charger
+	GameManager.current_scenario = \"res://Data/scenario_youcef.json\"
+	# Puis on lance la scène de jeu
+	get_tree().change_scene_to_file(\"res://Scenes/Gameplay/StoryParser.tscn\")
+
+func _on_lydia_selected():
+	# Même logique pour Lydia
+	GameManager.current_scenario = \"res://Data/scenario_lydia.json\"
+	get_tree().change_scene_to_file(\"res://Scenes/Gameplay/StoryParser.tscn\")
+
+func _on_maissaa_selected():
+	# Même logique pour Maïssaâ
+	GameManager.current_scenario = \"res://Data/scenario_maissaa.json\"
+	get_tree().change_scene_to_file(\"res://Scenes/Gameplay/StoryParser.tscn\")
+"
+
+[node name="CharacterSelection" type="Control" unique_id=617566241]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_cfcu6")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=940242434]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_8c456")
+
+[node name="Label" type="Label" parent="." unique_id=560180264]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "CHOISIS TON PERSONNAGE"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1140622886]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=8247236]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer" unique_id=1421759391]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=999772739]
+layout_mode = 2
+text = "SÉLECTIONNER YOUCEF (Artiste)"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=857672422]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer2" unique_id=2051918682]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer2" unique_id=789830615]
+layout_mode = 2
+text = "SÉLECTIONNER Marc (Ingenieur) "
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer" unique_id=962657925]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer3" unique_id=2128535714]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer3" unique_id=258315893]
+layout_mode = 2
+text = "SÉLECTIONNER ALYSSA (Consultant)"

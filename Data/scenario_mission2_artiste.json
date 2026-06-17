@@ -1,0 +1,65 @@
+{
+	"mission_id": "mission_2_artiste",
+	"competence": {
+		"id": "prompt_engineering",
+		"label": "Prompt Engineering",
+		"cote": "ia",
+		"question": "Un client veut des visuels cohérents sur 10 posts. Comment utilises-tu l'IA ?",
+		"reponse_a": "Je génère 10 images séparément et je choisis les meilleures.",
+		"reponse_b": "J'utilise un seed fixe et un prompt détaillé pour maintenir la cohérence visuelle.",
+		"bonne_reponse": "B",
+		"badge": "BADGE DÉBLOQUÉ : PROMPT ENGINEERING"
+	},
+	"nodes": {
+		"start": {
+			"text": "MISSION 2 : CAMPAGNE RÉSEAUX SOCIAUX 2035.",
+			"description": "Un influenceur veut une série de 10 visuels cohérents pour lancer sa marque. Il exige une identité forte et reconnaissable sur chaque post.",
+			"options": [
+				{
+					"text": "Générer les visuels un par un avec l'IA",
+					"impact_human_core": -20,
+					"impact_ai_synergy": 10,
+					"impact_quality": 20,
+					"time_cost": 2,
+					"next_node": "fin_echec_incoherence"
+				},
+				{
+					"text": "Appliquer mon 'Prompt Engineering' sur l'IA",
+					"condition_skill": "prompt_engineering",
+					"impact_quality": 90,
+					"impact_ai_synergy": 30,
+					"time_cost": 1,
+					"next_node": "fin_succes"
+				},
+				{
+					"text": "Visiter l'Arbre de Compétences",
+					"next_node": "aller_vers_arbre"
+				}
+			]
+		},
+		"fin_echec_incoherence": {
+			"text": "RÉSULTAT DÉCEVANT !\n\nLes 10 visuels ne se ressemblent pas. L'influenceur est déçu : \"C'est beau individuellement mais ça ne forme pas une identité cohérente.\"\n\nTu dois maîtriser le Prompt Engineering pour contrôler l'IA.",
+			"image": "res://_Assets/Images/feed_incoherent.jpg",
+			"options": [
+				{
+					"text": "Aller débloquer la compétence (Arbre)",
+					"next_node": "aller_vers_arbre"
+				},
+				{
+					"text": "Livrer la campagne telle quelle",
+					"impact_quality": -40,
+					"time_cost": 0,
+					"next_node": "fin_mauvaise"
+				}
+			]
+		},
+		"fin_succes": {
+			"text": "SUCCÈS TOTAL !\n\nLes 10 visuels forment une identité visuelle parfaitement cohérente. L'influenceur est bluffé par la maîtrise technique et artistique. La campagne devient virale.",
+			"options": []
+		},
+		"fin_mauvaise": {
+			"text": "ÉCHEC CRITIQUE...\n\nLa campagne est livrée mais l'incohérence visuelle nuit à la marque. L'influenceur ne renouvelle pas le contrat. Sans maîtrise des outils IA, la qualité en pâtit.",
+			"options": []
+		}
+	}
+}

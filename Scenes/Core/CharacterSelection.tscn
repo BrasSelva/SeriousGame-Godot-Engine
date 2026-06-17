@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://cygxaeiw8pewc"]
+
+[ext_resource type="Script" uid="uid://6kmypjlqhda1" path="res://Scripts/Controllers/CharacterSelection.gd" id="1_qn6g5"]
+[ext_resource type="PackedScene" uid="uid://dtrpl4chqloo2" path="res://Scenes/Core/idle_artiste.tscn" id="3_46ke7"]
+[ext_resource type="Texture2D" uid="uid://bxodmortvbhxr" path="res://_Assets/Images/backgrounds/background_sci_fi.png" id="3_e40r0"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_e40r0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_46ke7"]
+bg_color = Color(0.039215688, 0.0627451, 0.25490198, 0.41568628)
+border_color = Color(0, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e40r0"]
+bg_color = Color(0.039215688, 0.0627451, 0.25490198, 0.41568628)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="CharacterSelection" type="Control" unique_id=568000348]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qn6g5")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1900233526]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_e40r0")
+stretch_mode = 6
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1924915665]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 691.0
+offset_top = 99.0
+offset_right = -629.0
+offset_bottom = 169.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.7254902, 0.36862746, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxLine_e40r0")
+text = "2035: Choisis ton profil "
+
+[node name="CitationLabel" type="Label" parent="." unique_id=512466981]
+layout_mode = 1
+offset_left = 572.0
+offset_top = 218.0
+offset_right = 1518.0
+offset_bottom = 305.0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_46ke7")
+text = "      \"En 2035, l'image est partout, mais l'émotion est rare.
+    Saurez-vous dompter les algorithmes sans perdre votre âme ? \""
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1243299193]
+layout_mode = 0
+offset_left = 690.0
+offset_top = 340.0
+offset_right = 1312.0
+offset_bottom = 915.0
+
+[node name="Node2D" parent="VBoxContainer" unique_id=1972595146 instance=ExtResource("3_46ke7")]
+position = Vector2(276, 320)
+
+[node name="ArtisteName" type="Button" parent="." unique_id=757297782]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -129.0
+offset_top = -310.0
+offset_right = 149.0
+offset_bottom = -232.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_e40r0")
+text = "ARTISTE"
+
+[node name="PlayButton" type="Button" parent="." unique_id=1244368675]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -236.0
+offset_top = -163.0
+offset_right = 233.5
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_e40r0")
+text = "ENTRER EN STUDIO VIRTUEL"

@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://0tdfbjmoyrex"]
+
+[ext_resource type="Script" uid="uid://clc3i6rh2nkhg" path="res://Scripts/Utils/ScenarioParser.gd" id="1_xnajp"]
+[ext_resource type="Texture2D" uid="uid://bxodmortvbhxr" path="res://_Assets/Images/backgrounds/background_sci_fi.png" id="2_6ywjb"]
+[ext_resource type="PackedScene" uid="uid://cqd2njmmyes5n" path="res://Scenes/Core/arms_cross_artiste.tscn" id="3_0rlx3"]
+
+[node name="Control" type="Control" unique_id=21478466]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 75.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xnajp")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1402341768]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -66.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6ywjb")
+stretch_mode = 6
+
+[node name="MainLayout" type="HBoxContainer" parent="." unique_id=411528442]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -70.0
+offset_right = 3.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="LeftPanel_Perso" type="MarginContainer" parent="MainLayout" unique_id=1105549543]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Node2D" parent="MainLayout/LeftPanel_Perso" unique_id=1972595146 instance=ExtResource("3_0rlx3")]
+position = Vector2(534, 671)
+
+[node name="CenterPanel_Story" type="VBoxContainer" parent="MainLayout" unique_id=1737113999]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="MissionTitle" type="Label" parent="MainLayout/CenterPanel_Story" unique_id=1534608882]
+layout_mode = 2
+
+[node name="StoryBox" type="VBoxContainer" parent="MainLayout/CenterPanel_Story" unique_id=362603532]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="StoryText" type="RichTextLabel" parent="MainLayout/CenterPanel_Story/StoryBox" unique_id=975031120]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+
+[node name="Illustration" type="TextureRect" parent="MainLayout/CenterPanel_Story/StoryBox" unique_id=997057941]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="MainLayout/CenterPanel_Story" unique_id=807910260]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="RightPanel_Stats" type="VBoxContainer" parent="MainLayout" unique_id=304572623]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 60
+
+[node name="QualityBox" type="PanelContainer" parent="MainLayout/RightPanel_Stats" unique_id=1355955959]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainLayout/RightPanel_Stats/QualityBox" unique_id=1522136172]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MainLayout/RightPanel_Stats/QualityBox/VBoxContainer" unique_id=605565690]
+layout_mode = 2
+text = "QUALITÉ ÉMOTIONNELLE"
+
+[node name="ProgressQuality" type="TextureProgressBar" parent="MainLayout/RightPanel_Stats/QualityBox/VBoxContainer" unique_id=1696568050]
+layout_mode = 2
+
+[node name="TimeBox" type="PanelContainer" parent="MainLayout/RightPanel_Stats" unique_id=1588669768]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainLayout/RightPanel_Stats/TimeBox" unique_id=830983268]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MainLayout/RightPanel_Stats/TimeBox/VBoxContainer" unique_id=552559434]
+layout_mode = 2
+
+[node name="LabelTemps" type="Label" parent="MainLayout/RightPanel_Stats/TimeBox/VBoxContainer" unique_id=1309947949]
+layout_mode = 2
