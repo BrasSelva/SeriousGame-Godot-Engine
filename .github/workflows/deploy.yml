@@ -29,5 +29,5 @@ jobs:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: html
           ITCH_GAME: you-ai
-          ITCH_USER: brasseva
+          ITCH_USER: brasSelva
           PACKAGE: build/Web/Web.zip
