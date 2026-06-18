@@ -23,6 +23,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: 📦 Rapatriement de l'archive zip
+        run: cp /home/runner/.local/share/godot/archives/Web.zip ./Web.zip
+
       - name: 🚀 Déploiement sur itch.io via Butler
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
