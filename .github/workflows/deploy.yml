@@ -30,4 +30,4 @@ jobs:
           CHANNEL: html
           ITCH_GAME: you-ai
           ITCH_USER: BrasSelva
-          PACKAGE: build/Web/Web.zip
+          PACKAGE: Web.zip
