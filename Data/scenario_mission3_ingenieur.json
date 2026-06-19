@@ -39,7 +39,7 @@
 		},
 		"fin_echec_qualite": {
 			"text": "LIVRAISON RATÉE !\n\nL'IA a généré la plateforme entière mais les 20% critiques — sécurité, gestion des accès, logique métier — sont bourrés d'erreurs. Le client découvre 47 failles de sécurité à la recette.\n\nDéléguer à l'IA sans discernement, c'est perdre le contrôle de votre propre livrable.",
-			"image": "res://_Assets/Images/saxophone.png",
+			"image": "res://_Assets/Images/echec_ingenieur_m3.jpg",
 			"options": [
 				{
 					"text": "Aller débloquer la compétence (Arbre)",

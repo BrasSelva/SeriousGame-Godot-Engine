@@ -39,7 +39,7 @@
 		},
 		"fin_echec_biais": {
 			"text": "SCANDALE PUBLIC !\n\nL'algorithme est déployé. Trois mois plus tard, une journaliste révèle le biais discriminatoire. La startup est poursuivie en justice pour discrimination à l'embauche. Votre nom est cité comme validateur du code.\n\nL'IA reproduit les biais de ses données. Votre jugement éthique est irremplaçable.",
-			"image": "res://_Assets/Images/saxophone.png",
+			"image": "res://_Assets/Images/echec_ingenieur_m2.jpg",
 			"options": [
 				{
 					"text": "Aller débloquer la compétence (Arbre)",

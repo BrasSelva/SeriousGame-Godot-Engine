@@ -125,6 +125,7 @@ script = null
 
 [node name="Node2D_Ingenieur" parent="MainLayout/LeftPanel_Perso" unique_id=839246555 instance=ExtResource("4_cvtlb")]
 visible = false
+position = Vector2(450, 650)
 
 [node name="CenterPanel_Story" type="VBoxContainer" parent="MainLayout" unique_id=1737113999]
 custom_minimum_size = Vector2(600, 0)

@@ -39,7 +39,7 @@
 		},
 		"fin_echec_cascade": {
 			"text": "CATASTROPHE INDUSTRIELLE !\n\nLe code optimise chaque machine individuellement mais ignore leurs interactions. Une panne en cascade arrête toute la chaîne de production pendant 3 jours. Le coût est énorme.\n\nL'IA ne voit pas le système dans sa globalité. C'est votre rôle.",
-			"image": "res://_Assets/Images/saxophone.png",
+			"image": "res://_Assets/Images/echec_ingenieur_m1.jpg",
 			"options": [
 				{
 					"text": "Aller débloquer la compétence (Arbre)",
