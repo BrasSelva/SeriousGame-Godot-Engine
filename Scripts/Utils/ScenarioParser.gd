@@ -10,63 +10,89 @@ var step_counter: int = 0
 @onready var choices_container = $MainLayout/CenterPanel_Story/ChoicesContainer
 @onready var label_temps = $MainLayout/RightPanel_Stats/TimeBox/VBoxContainer/LabelTemps
 
-# On récupère les deux scènes instanciées dans le panneau de gauche
+# Personnage Artiste
 @onready var scene_idle = $MainLayout/LeftPanel_Perso/Node2D
 @onready var scene_arms = $MainLayout/LeftPanel_Perso/Node2D2
+
+# Personnage Ingénieur
+@onready var scene_ingenieur = $MainLayout/LeftPanel_Perso/Node2D_Ingenieur
 
 @onready var cadre_rouge = $MainLayout/CenterPanel_Story/StoryBox/VBoxContainer/BorderIllustration
 
 var ecriture_tween: Tween
 
 func _ready():
-	# Au démarrage, on affiche la scène idle et on cache la scène d'animation des bras
+	# Cacher tous les personnages par défaut
+	if scene_idle:
+		scene_idle.hide()
+	if scene_arms:
+		scene_arms.hide()
+	if scene_ingenieur:
+		scene_ingenieur.hide()
+
+	# Afficher le bon personnage selon le persona sélectionné
+	match GameManager.current_persona:
+		"artiste":
+			_init_artiste()
+		"ingenieur":
+			_init_ingenieur()
+
+	scenario_data = load_scenario_from_file(GameManager.get_scenario_path())
+	afficher_noeud("start")
+
+func _init_artiste():
 	if scene_idle != null and is_instance_valid(scene_idle):
 		scene_idle.show()
 		var sprite_idle = scene_idle.get_node_or_null("AnimatedSprite2D")
 		if sprite_idle:
 			sprite_idle.play("idle")
-			
 	if scene_arms != null and is_instance_valid(scene_arms):
 		scene_arms.hide()
 
-	scenario_data = load_scenario_from_file(GameManager.get_scenario_path())
-	afficher_noeud("start")
+func _init_ingenieur():
+	if scene_ingenieur != null and is_instance_valid(scene_ingenieur):
+		scene_ingenieur.show()
+		var sprite = scene_ingenieur.get_node_or_null("AnimatedSprite2D")
+		if sprite:
+			sprite.play("idle")
+			print("Ingénieur animé dans ScenarioParser !")
 
-# --- SÉQUENCE D'ANIMATION ---
+# --- SÉQUENCE D'ANIMATION (artiste uniquement) ---
 func lancer_sequence_animation():
+	# L'animation bras croisés n'existe que pour l'artiste
+	if GameManager.current_persona != "artiste":
+		return
+
 	if not scene_idle or not scene_arms:
 		return
-		
-	# 1. On masque le sprite inactif et on affiche le sprite animé
+
 	scene_idle.hide()
 	scene_arms.show()
-	
+
 	var sprite_arms = scene_arms.get_node_or_null("AnimatedSprite2D")
 	if not sprite_arms:
 		return
-		
-	# 2. Le personnage croise les bras
+
 	sprite_arms.play("arms_cross_in")
 	await sprite_arms.animation_finished
-	
-	# 3. Le personnage maintient les bras croisés (pause de 2 secondes)
+
 	sprite_arms.play("arms_hold")
 	await get_tree().create_timer(2.0).timeout
-	
-	# 4. Le personnage décroise les bras
+
 	sprite_arms.play("arms_cross_out")
 	await sprite_arms.animation_finished
-	
-	# 5. L'animation est terminée : on recache cette scène et on remet l'idle normal
+
 	scene_arms.hide()
 	scene_idle.show()
-	
+
 	var sprite_idle = scene_idle.get_node_or_null("AnimatedSprite2D")
 	if sprite_idle:
 		sprite_idle.play("idle")
 
 func load_scenario_from_file(file_path: String) -> Dictionary:
+	print("--- Chargement du fichier : ", file_path)
 	if not FileAccess.file_exists(file_path):
+		print("❌ Fichier introuvable !")
 		return {}
 
 	var file = FileAccess.open(file_path, FileAccess.READ)
@@ -74,7 +100,9 @@ func load_scenario_from_file(file_path: String) -> Dictionary:
 	var json = JSON.new()
 	var error = json.parse(content)
 	if error == OK:
+		print("✅ JSON chargé avec succès !")
 		return json.data
+	print("❌ Erreur de lecture JSON")
 	return {}
 
 func afficher_noeud(node_id: String):
@@ -83,6 +111,7 @@ func afficher_noeud(node_id: String):
 		child.queue_free()
 
 	if not scenario_data.has("nodes") or not scenario_data["nodes"].has(node_id):
+		story_text.text = "❌ ERREUR : Le nœud '" + node_id + "' est introuvable."
 		return
 
 	var current_node = scenario_data["nodes"][node_id]
@@ -101,7 +130,7 @@ func afficher_noeud(node_id: String):
 		if cadre_rouge:
 			cadre_rouge.hide()
 
-	elif node_id == "fin_echec_ia" or node_id == "fin_echec_incoherence" or node_id == "fin_echec_choix":
+	elif current_node.has("image"):
 		story_text.text = current_node["text"]
 		story_text.add_theme_color_override("default_color", Color.RED)
 		if illustration:
@@ -127,7 +156,6 @@ func afficher_noeud(node_id: String):
 	var options = current_node["options"]
 
 	if options.size() == 0:
-		# Au lieu d'un timer automatique, on crée un bouton spécial pour la fin
 		var opt_fin = {
 			"text": "Voir mon Bilan",
 			"is_end_button": true
@@ -184,14 +212,15 @@ func _on_choice_made(opt: Dictionary):
 	if opt.has("is_end_button") and opt["is_end_button"] == true:
 		get_tree().change_scene_to_file("res://Scenes/Core/Bilan.tscn")
 		return
+
 	step_counter += 1
 	var user_id = GameManager.current_user_id
 	var nom_du_choix = opt["text"]
 	var vrai_scenario_id = GameManager.scenarios_uuids.get(GameManager.current_mission, "")
-	
+
 	if user_id != "" and vrai_scenario_id != "":
 		Network.send_choice_to_db(vrai_scenario_id, current_node_id, nom_du_choix, step_counter, user_id)
-		
+
 	var h_impact = opt.get("impact_human_core", 0)
 	var ai_impact = opt.get("impact_ai_synergy", 0)
 	var q_impact = opt.get("impact_quality", 0)
@@ -202,7 +231,6 @@ func _on_choice_made(opt: Dictionary):
 	if opt.has("unlock_skill"):
 		GameManager.unlock_skill(opt["unlock_skill"])
 
-	# ---> C'EST ICI QU'ON DÉCLENCHE L'ANIMATION <---
 	lancer_sequence_animation()
 
 	if opt.has("next_node") and opt["next_node"] == "aller_vers_arbre":

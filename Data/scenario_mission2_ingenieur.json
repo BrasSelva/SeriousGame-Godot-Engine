@@ -1,0 +1,65 @@
+{
+	"mission_id": "mission_2_ingenieur",
+	"competence": {
+		"id": "ethique_technologique",
+		"label": "Éthique Technologique",
+		"cote": "humain",
+		"question": "Un algorithme de recrutement IA présente un taux de sélection de 92% pour les hommes. Que faites-vous ?",
+		"reponse_a": "Le code est fonctionnel et les performances sont excellentes, je le valide et le livre.",
+		"reponse_b": "Je signale le biais discriminatoire, refuse de valider le code et propose une correction des données d'entraînement.",
+		"bonne_reponse": "B",
+		"badge": "BADGE DÉBLOQUÉ : ÉTHIQUE TECHNOLOGIQUE"
+	},
+	"nodes": {
+		"start": {
+			"text": "MISSION 2 : ALGORITHME DE RECRUTEMENT 2035.",
+			"description": "Une startup RH vous demande de valider un algorithme de recrutement généré par IA. Le code est propre, les performances sont excellentes. Mais en analysant les résultats, vous remarquez que l'algorithme sélectionne 92% d'hommes pour les postes techniques.",
+			"options": [
+				{
+					"text": "Valider le code — il est fonctionnel et performant",
+					"impact_human_core": -35,
+					"impact_ai_synergy": 15,
+					"impact_quality": -30,
+					"time_cost": 1,
+					"next_node": "fin_echec_biais"
+				},
+				{
+					"text": "Appliquer mon 'Éthique Technologique' et refuser de valider",
+					"condition_skill": "ethique_technologique",
+					"impact_quality": 85,
+					"impact_human_core": 35,
+					"time_cost": 2,
+					"next_node": "fin_succes"
+				},
+				{
+					"text": "Visiter l'Arbre de Compétences",
+					"next_node": "aller_vers_arbre"
+				}
+			]
+		},
+		"fin_echec_biais": {
+			"text": "SCANDALE PUBLIC !\n\nL'algorithme est déployé. Trois mois plus tard, une journaliste révèle le biais discriminatoire. La startup est poursuivie en justice pour discrimination à l'embauche. Votre nom est cité comme validateur du code.\n\nL'IA reproduit les biais de ses données. Votre jugement éthique est irremplaçable.",
+			"image": "res://_Assets/Images/saxophone.png",
+			"options": [
+				{
+					"text": "Aller débloquer la compétence (Arbre)",
+					"next_node": "aller_vers_arbre"
+				},
+				{
+					"text": "Accepter les conséquences (Fin de mission)",
+					"impact_quality": -60,
+					"time_cost": 0,
+					"next_node": "fin_mauvaise"
+				}
+			]
+		},
+		"fin_succes": {
+			"text": "SUCCÈS TOTAL !\n\nVous avez refusé de valider le code et documenté le biais. La startup a corrigé ses données d'entraînement et relancé l'algorithme. Le nouveau modèle atteint 51% de diversité. Vous êtes reconnu comme un développeur responsable.",
+			"options": []
+		},
+		"fin_mauvaise": {
+			"text": "ÉCHEC CRITIQUE...\n\nVotre réputation est détruite. La startup ferme sous la pression judiciaire. Un code performant n'est pas un code éthique — et c'est au développeur humain de faire la différence.",
+			"options": []
+		}
+	}
+}
