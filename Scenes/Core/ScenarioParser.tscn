@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://clc3i6rh2nkhg" path="res://Scripts/Utils/ScenarioParser.gd" id="1_iajxc"]
 [ext_resource type="Texture2D" uid="uid://bxodmortvbhxr" path="res://_Assets/Images/backgrounds/background_sci_fi.png" id="2_lynfm"]
-[ext_resource type="PackedScene" uid="uid://dtrpl4chqloo2" path="res://Scenes/Core/idle_artiste.tscn" id="3_cvtlb"]
 [ext_resource type="Texture2D" uid="uid://codnr1fptedil" path="res://_Assets/Images/saxophone.png" id="4_5ahm8"]
-[ext_resource type="PackedScene" uid="uid://cqd2njmmyes5n" path="res://Scenes/Core/arms_cross_artiste.tscn" id="4_lynfm"]
+[ext_resource type="PackedScene" uid="uid://d1emk4jdbcs6v" path="res://Scenes/Core/idle_ingenieur.tscn" id="4_cvtlb"]
+[ext_resource type="PackedScene" uid="uid://dtrpl4chqloo2" path="res://Scenes/Core/idle_artiste.tscn" id="4_lynfm"]
+[ext_resource type="PackedScene" uid="uid://18e34br6ulee" path="res://Scenes/Core/arms_cross_artiste.tscn" id="4_vmplv"]
+[ext_resource type="PackedScene" uid="uid://clipwbvg6fkre" path="res://Scenes/Core/idle_consultant.tscn" id="5_cvtlb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iajxc"]
 bg_color = Color(0.20784314, 0.24705882, 0.52156866, 0.6392157)
@@ -58,7 +60,7 @@ expand_margin_right = 50.0
 
 [sub_resource type="Theme" id="Theme_iajxc"]
 
-[node name="Control" type="Control" unique_id=21478466]
+[node name="Control2" type="Control" unique_id=21478466]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -116,12 +118,20 @@ theme_override_constants/separation = 20
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Node2D" parent="MainLayout/LeftPanel_Perso" unique_id=1972595146 instance=ExtResource("3_cvtlb")]
+[node name="Node2D" parent="MainLayout/LeftPanel_Perso" unique_id=1972595146 instance=ExtResource("4_lynfm")]
 position = Vector2(401, 700)
 
-[node name="Node2D2" parent="MainLayout/LeftPanel_Perso" unique_id=1785609953 instance=ExtResource("4_lynfm")]
-position = Vector2(401, 745)
+[node name="Node2D3_Artiste" parent="MainLayout/LeftPanel_Perso" unique_id=1886318964 instance=ExtResource("4_vmplv")]
+position = Vector2(401, 744)
 script = null
+
+[node name="Node2D_Ingenieur" parent="MainLayout/LeftPanel_Perso" unique_id=839246555 instance=ExtResource("4_cvtlb")]
+visible = false
+position = Vector2(450, 650)
+
+[node name="Node2D_Consultant" parent="MainLayout/LeftPanel_Perso" unique_id=2020450521 instance=ExtResource("5_cvtlb")]
+visible = false
+position = Vector2(401, 700)
 
 [node name="CenterPanel_Story" type="VBoxContainer" parent="MainLayout" unique_id=1737113999]
 custom_minimum_size = Vector2(600, 0)

@@ -4,12 +4,14 @@ extends Node
 var current_user_id: String = ""
 var missions_terminees: Array = []
 
-# NOUVEAU : Le traducteur d'identifiants pour Supabase !
 var scenarios_uuids = {
-	1: "a7700388-f339-4637-8127-63c1a95d7ac8", # Ta mission 1 (Affiche)
-	2: "1817f4bb-a79b-4034-87e6-e39de3c9caad",  # <-- À remplacer
-	3: "d72b4517-7288-4d3b-9e2a-3d6e296a60f3"   # <-- À remplacer
+	1: "a7700388-f339-4637-8127-63c1a95d7ac8",
+	2: "1817f4bb-a79b-4034-87e6-e39de3c9caad",
+	3: "d72b4517-7288-4d3b-9e2a-3d6e296a60f3"
 }
+
+# --- PERSONA SÉLECTIONNÉ ---
+var current_persona: String = "" # Vide par défaut — doit être défini avant de lancer le jeu
 
 # --- STATISTIQUES ---
 var human_score: int = 50
@@ -42,6 +44,7 @@ func reset_stats():
 	ai_score = 50
 	quality_score = 0
 	time_left = 4
+	unlocked_skills = []
 	print("🔄 Stats réinitialisées pour la mission ", current_mission)
 
 func next_mission():
@@ -50,12 +53,20 @@ func next_mission():
 	print("➡️ Passage à la mission ", current_mission)
 
 func get_scenario_path() -> String:
-	match current_mission:
-		1:
-			return "res://Data/scenario_youcef.json"
-		2:
-			return "res://Data/scenario_mission2_artiste.json"
-		3:
-			return "res://Data/scenario_mission3_artiste.json"
-		_:
-			return "res://Data/scenario_youcef.json"
+	match current_persona:
+		"artiste":
+			match current_mission:
+				1: return "res://Data/scenario_youcef.json"
+				2: return "res://Data/scenario_mission2_artiste.json"
+				3: return "res://Data/scenario_mission3_artiste.json"
+		"ingenieur":
+			match current_mission:
+				1: return "res://Data/scenario_mission1_ingenieur.json"
+				2: return "res://Data/scenario_mission2_ingenieur.json"
+				3: return "res://Data/scenario_mission3_ingenieur.json"
+		"consultant":
+			match current_mission:
+				1: return "res://Data/scenario_mission1_consultant.json"
+				2: return "res://Data/scenario_mission2_consultant.json"
+				3: return "res://Data/scenario_mission3_consultant.json"
+	return ""

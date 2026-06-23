@@ -1,0 +1,65 @@
+{
+	"mission_id": "mission_1_ingenieur",
+	"competence": {
+		"id": "pensee_systemique",
+		"label": "Pensée Systémique",
+		"cote": "humain",
+		"question": "L'IA a généré un code qui optimise chaque machine individuellement. Quelle est l'approche correcte ?",
+		"reponse_a": "Je déploie le code tel quel, chaque machine est optimisée donc le système aussi.",
+		"reponse_b": "J'analyse les interactions entre les machines avant de déployer pour éviter les effets de bord.",
+		"bonne_reponse": "B",
+		"badge": "BADGE DÉBLOQUÉ : PENSÉE SYSTÉMIQUE"
+	},
+	"nodes": {
+		"start": {
+			"text": "MISSION 1 : AUTOMATISATION DE LA CHAÎNE DE PRODUCTION.",
+			"description": "Une usine automobile 2035 vous confie l'automatisation de sa chaîne de production. L'IA a généré un système complet qui optimise le rendement de chaque machine. Le directeur technique veut un déploiement immédiat.",
+			"options": [
+				{
+					"text": "Déployer le code IA immédiatement sans analyse",
+					"impact_human_core": -30,
+					"impact_ai_synergy": 20,
+					"impact_quality": -20,
+					"time_cost": 1,
+					"next_node": "fin_echec_cascade"
+				},
+				{
+					"text": "Appliquer ma 'Pensée Systémique' avant le déploiement",
+					"condition_skill": "pensee_systemique",
+					"impact_quality": 90,
+					"impact_human_core": 25,
+					"time_cost": 2,
+					"next_node": "fin_succes"
+				},
+				{
+					"text": "Visiter l'Arbre de Compétences",
+					"next_node": "aller_vers_arbre"
+				}
+			]
+		},
+		"fin_echec_cascade": {
+			"text": "CATASTROPHE INDUSTRIELLE !\n\nLe code optimise chaque machine individuellement mais ignore leurs interactions. Une panne en cascade arrête toute la chaîne de production pendant 3 jours. Le coût est énorme.\n\nL'IA ne voit pas le système dans sa globalité. C'est votre rôle.",
+			"image": "res://_Assets/Images/echec_ingenieur_m1.jpg",
+			"options": [
+				{
+					"text": "Aller débloquer la compétence (Arbre)",
+					"next_node": "aller_vers_arbre"
+				},
+				{
+					"text": "Forcer la remise en production (Fin de mission)",
+					"impact_quality": -50,
+					"time_cost": 0,
+					"next_node": "fin_mauvaise"
+				}
+			]
+		},
+		"fin_succes": {
+			"text": "SUCCÈS TOTAL !\n\nVotre analyse systémique a identifié 3 points de friction critiques entre les machines. Vous avez corrigé le code IA avant le déploiement. La chaîne tourne à 98% de rendement sans aucune panne.",
+			"options": []
+		},
+		"fin_mauvaise": {
+			"text": "ÉCHEC CRITIQUE...\n\nLa chaîne de production reste instable. Le client résilie le contrat. Sans pensée systémique, l'IA génère du code qui fonctionne en isolation mais échoue dans la réalité complexe d'un système industriel.",
+			"options": []
+		}
+	}
+}

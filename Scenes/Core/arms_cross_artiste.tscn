@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cqd2njmmyes5n"]
+[gd_scene format=3 uid="uid://18e34br6ulee"]
 
 [ext_resource type="Script" uid="uid://bnk0xnk626g0t" path="res://Scripts/selection_circle.gd" id="1_8euth"]
 [ext_resource type="Texture2D" uid="uid://dgwk7oo77n2v5" path="res://_Assets/Images/characters/artiste/cross_arms/cross_arms_in/cross_in_00.png" id="1_bb0xm"]

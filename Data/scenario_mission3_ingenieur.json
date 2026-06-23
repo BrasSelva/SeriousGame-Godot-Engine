@@ -1,0 +1,65 @@
+{
+	"mission_id": "mission_3_ingenieur",
+	"competence": {
+		"id": "collaboration_humain_ia",
+		"label": "Collaboration Humain-IA",
+		"cote": "ia",
+		"question": "L'IA peut générer 80% du code en 2 heures. Comment gérez-vous les 20% restants ?",
+		"reponse_a": "Je laisse l'IA générer les 20% aussi, le client n'y verra que du feu.",
+		"reponse_b": "Je prends en charge les 20% critiques moi-même : architecture, sécurité et logique métier complexe.",
+		"bonne_reponse": "B",
+		"badge": "BADGE DÉBLOQUÉ : COLLABORATION HUMAIN-IA"
+	},
+	"nodes": {
+		"start": {
+			"text": "MISSION 3 : LIVRAISON EN 2 SEMAINES.",
+			"description": "Un client veut une plateforme de gestion industrielle livrée en 2 semaines. Délai impossible seul. Mais l'IA peut générer 80% du code. Il faut orchestrer intelligemment la collaboration pour tenir le délai sans sacrifier la qualité.",
+			"options": [
+				{
+					"text": "Laisser l'IA tout générer pour tenir le délai",
+					"impact_human_core": -25,
+					"impact_ai_synergy": 30,
+					"impact_quality": -35,
+					"time_cost": 1,
+					"next_node": "fin_echec_qualite"
+				},
+				{
+					"text": "Appliquer ma 'Collaboration Humain-IA' pour orchestrer",
+					"condition_skill": "collaboration_humain_ia",
+					"impact_quality": 95,
+					"impact_ai_synergy": 35,
+					"time_cost": 2,
+					"next_node": "fin_succes"
+				},
+				{
+					"text": "Visiter l'Arbre de Compétences",
+					"next_node": "aller_vers_arbre"
+				}
+			]
+		},
+		"fin_echec_qualite": {
+			"text": "LIVRAISON RATÉE !\n\nL'IA a généré la plateforme entière mais les 20% critiques — sécurité, gestion des accès, logique métier — sont bourrés d'erreurs. Le client découvre 47 failles de sécurité à la recette.\n\nDéléguer à l'IA sans discernement, c'est perdre le contrôle de votre propre livrable.",
+			"image": "res://_Assets/Images/echec_ingenieur_m3.jpg",
+			"options": [
+				{
+					"text": "Aller débloquer la compétence (Arbre)",
+					"next_node": "aller_vers_arbre"
+				},
+				{
+					"text": "Livrer malgré les failles (Fin de mission)",
+					"impact_quality": -55,
+					"time_cost": 0,
+					"next_node": "fin_mauvaise"
+				}
+			]
+		},
+		"fin_succes": {
+			"text": "SUCCÈS TOTAL !\n\nVous avez délégué à l'IA ce qu'elle fait bien (code répétitif, CRUD, interfaces) et pris en charge vous-même l'architecture de sécurité et la logique métier complexe. Livraison en 13 jours, zéro faille. Le client renouvelle le contrat pour 6 mois.",
+			"options": []
+		},
+		"fin_mauvaise": {
+			"text": "ÉCHEC CRITIQUE...\n\nLes failles de sécurité sont exploitées 48h après la mise en production. Les données industrielles du client sont compromises. Savoir quoi déléguer à l'IA et quoi garder — c'est la compétence clé du développeur de 2035.",
+			"options": []
+		}
+	}
+}

@@ -1,0 +1,65 @@
+{
+	"mission_id": "mission_3_consultant",
+	"competence": {
+		"id": "decision_strategique",
+		"label": "Prise de Décision Stratégique",
+		"cote": "ia",
+		"question": "L'IA vous propose 3 scénarios stratégiques avec des probabilités de succès similaires. Comment choisissez-vous ?",
+		"reponse_a": "Je choisis le scénario avec la probabilité de succès la plus élevée selon l'IA.",
+		"reponse_b": "J'analyse les hypothèses derrière chaque scénario, je consulte mon expérience terrain et j'assume une recommandation argumentée.",
+		"bonne_reponse": "B",
+		"badge": "BADGE DÉBLOQUÉ : PRISE DE DÉCISION STRATÉGIQUE"
+	},
+	"nodes": {
+		"start": {
+			"text": "MISSION 3 : RECOMMANDATION STRATÉGIQUE EN 48H.",
+			"description": "Votre cabinet doit rendre une recommandation stratégique à un client en 48h. L'IA a analysé 10 000 données de marché et vous propose 3 scénarios avec des probabilités de succès proches. Le client attend votre recommandation finale — pas celle de l'IA.",
+			"options": [
+				{
+					"text": "Livrer le scénario IA le mieux noté sans analyse complémentaire",
+					"impact_human_core": -20,
+					"impact_ai_synergy": 25,
+					"impact_quality": -35,
+					"time_cost": 1,
+					"next_node": "fin_echec_decision"
+				},
+				{
+					"text": "Appliquer ma 'Prise de Décision Stratégique' pour arbitrer",
+					"condition_skill": "decision_strategique",
+					"impact_quality": 92,
+					"impact_ai_synergy": 30,
+					"time_cost": 2,
+					"next_node": "fin_succes"
+				},
+				{
+					"text": "Visiter l'Arbre de Compétences",
+					"next_node": "aller_vers_arbre"
+				}
+			]
+		},
+		"fin_echec_decision": {
+			"text": "RECOMMANDATION CONTESTÉE !\n\nLe client adopte votre recommandation. Six mois plus tard, le marché évolue différemment des projections IA. Le scénario choisi échoue. Le client reproche à votre cabinet de n'avoir fourni qu'une analyse algorithmique sans expertise humaine.\n\nUne recommandation sans jugement humain n'est qu'un rapport automatisé.",
+			"image": "res://_Assets/Images/echec_consultant_m3.png",
+			"options": [
+				{
+					"text": "Aller débloquer la compétence (Arbre)",
+					"next_node": "aller_vers_arbre"
+				},
+				{
+					"text": "Assumer la recommandation (Fin de mission)",
+					"impact_quality": -50,
+					"time_cost": 0,
+					"next_node": "fin_mauvaise"
+				}
+			]
+		},
+		"fin_succes": {
+			"text": "SUCCÈS TOTAL !\n\nVotre analyse des hypothèses a révélé que le scénario IA le mieux noté reposait sur des données de marché obsolètes. Vous avez choisi le scénario 2 en l'argumentant avec votre expertise terrain. 18 mois plus tard, le client a doublé son chiffre d'affaires. Votre cabinet décroche un contrat cadre de 3 ans.",
+			"options": []
+		},
+		"fin_mauvaise": {
+			"text": "ÉCHEC CRITIQUE...\n\nLe client résilie le contrat et publie un avis négatif. L'IA est un outil d'analyse puissant — mais la responsabilité de la décision stratégique appartient au consultant humain.",
+			"options": []
+		}
+	}
+}
