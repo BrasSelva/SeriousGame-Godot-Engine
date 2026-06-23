@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="YouAndAI_SeriousGame"
-run/main_scene="uid://dadqmrq6wt4va"
+run/main_scene="res://Scenes/UI/MainMenu.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://crmirahdrsg1a"
 
 [autoload]
 
-GameManager="*uid://dy4plr8vxndto"
-Network="*uid://b2kbbaceqtesm"
+GameManager="*res://Scripts/Autoloads/GameManager.gd"
+Network="*res://Scripts/Autoloads/Network.gd"
 
 [display]
 
