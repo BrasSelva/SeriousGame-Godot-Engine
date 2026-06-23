@@ -1,0 +1,65 @@
+{
+	"mission_id": "mission_1_consultant",
+	"competence": {
+		"id": "sens_critique_consultant",
+		"label": "Sens Critique",
+		"cote": "humain",
+		"question": "Un rapport IA montre des résultats positifs mais vous repérez des incohérences dans les données. Que faites-vous ?",
+		"reponse_a": "Je livre le rapport tel quel — les chiffres sont positifs et le client sera content.",
+		"reponse_b": "Je creuse les incohérences, identifie les erreurs et présente un rapport corrigé même si les conclusions sont moins flatteuses.",
+		"bonne_reponse": "B",
+		"badge": "BADGE DÉBLOQUÉ : SENS CRITIQUE"
+	},
+	"nodes": {
+		"start": {
+			"text": "MISSION 1 : AUDIT DE PERFORMANCE 2035.",
+			"description": "Un grand groupe industriel vous demande d'analyser un rapport de performance généré par IA. Les chiffres sont positifs, les graphiques sont beaux. Mais en le lisant attentivement, vous repérez des incohérences dans les données sources. Le client attend votre validation pour présenter ce rapport à ses actionnaires.",
+			"options": [
+				{
+					"text": "Valider le rapport — les conclusions sont positives",
+					"impact_human_core": -30,
+					"impact_ai_synergy": 15,
+					"impact_quality": -40,
+					"time_cost": 1,
+					"next_node": "fin_echec_rapport"
+				},
+				{
+					"text": "Appliquer mon 'Sens Critique' et creuser les incohérences",
+					"condition_skill": "sens_critique_consultant",
+					"impact_quality": 90,
+					"impact_human_core": 30,
+					"time_cost": 2,
+					"next_node": "fin_succes"
+				},
+				{
+					"text": "Visiter l'Arbre de Compétences",
+					"next_node": "aller_vers_arbre"
+				}
+			]
+		},
+		"fin_echec_rapport": {
+			"text": "SCANDALE EN ASSEMBLÉE GÉNÉRALE !\n\nLe rapport est présenté aux actionnaires. Un analyste indépendant repère les incohérences que vous aviez ignorées. Le groupe est accusé de manipulation de données. Votre cabinet perd le contrat et sa réputation en prend un coup.\n\nL'IA génère des rapports convaincants — pas nécessairement exacts.",
+			"image": "res://_Assets/Images/echec_consultant_m1.png",
+			"options": [
+				{
+					"text": "Aller débloquer la compétence (Arbre)",
+					"next_node": "aller_vers_arbre"
+				},
+				{
+					"text": "Assumer les conséquences (Fin de mission)",
+					"impact_quality": -55,
+					"time_cost": 0,
+					"next_node": "fin_mauvaise"
+				}
+			]
+		},
+		"fin_succes": {
+			"text": "SUCCÈS TOTAL !\n\nVotre analyse critique a révélé 3 erreurs majeures dans les données sources. Le rapport corrigé présente une image moins flatteuse mais exacte. Le client vous remercie d'avoir évité un scandale. Votre cabinet est désormais référencé comme partenaire de confiance.",
+			"options": []
+		},
+		"fin_mauvaise": {
+			"text": "ÉCHEC CRITIQUE...\n\nLa réputation de votre cabinet est détruite. Sans sens critique humain, l'IA produit des rapports qui semblent solides mais cachent des failles que seul un expert averti peut détecter.",
+			"options": []
+		}
+	}
+}

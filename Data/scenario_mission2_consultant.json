@@ -1,0 +1,65 @@
+{
+	"mission_id": "mission_2_consultant",
+	"competence": {
+		"id": "intelligence_relationnelle",
+		"label": "Intelligence Relationnelle",
+		"cote": "humain",
+		"question": "Le DG semble réticent à votre pitch mais ne dit rien. Quelle est la bonne approche ?",
+		"reponse_a": "Je continue mon pitch — les données sont solides, les chiffres parleront d'eux-mêmes.",
+		"reponse_b": "Je marque une pause, interpelle directement le DG sur ses réserves et adapte mon discours à ses préoccupations non dites.",
+		"bonne_reponse": "B",
+		"badge": "BADGE DÉBLOQUÉ : INTELLIGENCE RELATIONNELLE"
+	},
+	"nodes": {
+		"start": {
+			"text": "MISSION 2 : CONVAINCRE LE COMEX 2035.",
+			"description": "Vous devez convaincre le COMEX d'une grande entreprise d'adopter une nouvelle stratégie digitale. L'IA vous a préparé un pitch parfait : données de marché, ROI projeté, benchmarks concurrentiels. Tout est là. Mais en salle, vous sentez que le DG est réticent. Il hoche la tête poliment mais son regard dit autre chose.",
+			"options": [
+				{
+					"text": "Continuer le pitch sans dévier — les données sont solides",
+					"impact_human_core": -25,
+					"impact_ai_synergy": 20,
+					"impact_quality": -30,
+					"time_cost": 1,
+					"next_node": "fin_echec_comex"
+				},
+				{
+					"text": "Appliquer mon 'Intelligence Relationnelle' et m'adapter",
+					"condition_skill": "intelligence_relationnelle",
+					"impact_quality": 88,
+					"impact_human_core": 35,
+					"time_cost": 2,
+					"next_node": "fin_succes"
+				},
+				{
+					"text": "Visiter l'Arbre de Compétences",
+					"next_node": "aller_vers_arbre"
+				}
+			]
+		},
+		"fin_echec_comex": {
+			"text": "PITCH REJETÉ !\n\nLe COMEX vote contre la stratégie. Après la réunion, vous apprenez que le DG avait des craintes sur l'impact social des suppressions de postes liées à la transformation — un sujet que votre pitch n'a jamais abordé.\n\nL'IA analyse les données mais ne lit pas les émotions ni les dynamiques de pouvoir.",
+			"image": "res://_Assets/Images/echec_consultant_m2.png",
+			"options": [
+				{
+					"text": "Aller débloquer la compétence (Arbre)",
+					"next_node": "aller_vers_arbre"
+				},
+				{
+					"text": "Accepter le refus (Fin de mission)",
+					"impact_quality": -45,
+					"time_cost": 0,
+					"next_node": "fin_mauvaise"
+				}
+			]
+		},
+		"fin_succes": {
+			"text": "SUCCÈS TOTAL !\n\nVous avez interpellé le DG sur ses réserves. Il a exprimé ses craintes sur l'impact social. Vous avez adapté votre pitch en intégrant un volet accompagnement RH. Le COMEX vote à l'unanimité pour la stratégie. Mission accomplie.",
+			"options": []
+		},
+		"fin_mauvaise": {
+			"text": "ÉCHEC CRITIQUE...\n\nLe contrat est perdu. Un concurrent plus à l'écoute remporte le marché. Les meilleures données du monde ne remplacent pas la capacité à lire une salle et à adapter son discours en temps réel.",
+			"options": []
+		}
+	}
+}

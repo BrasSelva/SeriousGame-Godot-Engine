@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bxodmortvbhxr" path="res://_Assets/Images/backgrounds/background_sci_fi.png" id="2_lynfm"]
 [ext_resource type="Texture2D" uid="uid://codnr1fptedil" path="res://_Assets/Images/saxophone.png" id="4_5ahm8"]
 [ext_resource type="PackedScene" uid="uid://d1emk4jdbcs6v" path="res://Scenes/Core/idle_ingenieur.tscn" id="4_cvtlb"]
-[ext_resource type="PackedScene" uid="uid://cqd2njmmyes5n" path="res://Scenes/Core/idle_artiste.tscn" id="4_lynfm"]
+[ext_resource type="PackedScene" uid="uid://dtrpl4chqloo2" path="res://Scenes/Core/idle_artiste.tscn" id="4_lynfm"]
+[ext_resource type="PackedScene" uid="uid://clipwbvg6fkre" path="res://Scenes/Core/idle_consultant.tscn" id="5_cvtlb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iajxc"]
 bg_color = Color(0.20784314, 0.24705882, 0.52156866, 0.6392157)
@@ -126,6 +127,10 @@ script = null
 [node name="Node2D_Ingenieur" parent="MainLayout/LeftPanel_Perso" unique_id=839246555 instance=ExtResource("4_cvtlb")]
 visible = false
 position = Vector2(450, 650)
+
+[node name="Node2D_Consultant" parent="MainLayout/LeftPanel_Perso" unique_id=2020450521 instance=ExtResource("5_cvtlb")]
+visible = false
+position = Vector2(401, 700)
 
 [node name="CenterPanel_Story" type="VBoxContainer" parent="MainLayout" unique_id=1737113999]
 custom_minimum_size = Vector2(600, 0)
