@@ -17,25 +17,30 @@ var step_counter: int = 0
 # Personnage Ingénieur
 @onready var scene_ingenieur = $MainLayout/LeftPanel_Perso/Node2D_Ingenieur
 
+# Personnage Consultant
+@onready var scene_consultant = $MainLayout/LeftPanel_Perso/Node2D_Consultant
+
 @onready var cadre_rouge = $MainLayout/CenterPanel_Story/StoryBox/VBoxContainer/BorderIllustration
 
 var ecriture_tween: Tween
 
 func _ready():
-	# Cacher tous les personnages par défaut
 	if scene_idle:
 		scene_idle.hide()
 	if scene_arms:
 		scene_arms.hide()
 	if scene_ingenieur:
 		scene_ingenieur.hide()
+	if scene_consultant:
+		scene_consultant.hide()
 
-	# Afficher le bon personnage selon le persona sélectionné
 	match GameManager.current_persona:
 		"artiste":
 			_init_artiste()
 		"ingenieur":
 			_init_ingenieur()
+		"consultant":
+			_init_consultant()
 
 	scenario_data = load_scenario_from_file(GameManager.get_scenario_path())
 	afficher_noeud("start")
@@ -57,9 +62,16 @@ func _init_ingenieur():
 			sprite.play("idle")
 			print("Ingénieur animé dans ScenarioParser !")
 
+func _init_consultant():
+	if scene_consultant != null and is_instance_valid(scene_consultant):
+		scene_consultant.show()
+		var sprite = scene_consultant.get_node_or_null("AnimatedSprite2D")
+		if sprite:
+			sprite.play("idle")
+			print("Consultant animé dans ScenarioParser !")
+
 # --- SÉQUENCE D'ANIMATION (artiste uniquement) ---
 func lancer_sequence_animation():
-	# L'animation bras croisés n'existe que pour l'artiste
 	if GameManager.current_persona != "artiste":
 		return
 
@@ -130,7 +142,7 @@ func afficher_noeud(node_id: String):
 		if cadre_rouge:
 			cadre_rouge.hide()
 
-	elif current_node.has("image"):
+	elif node_id.begins_with("fin_echec"):
 		story_text.text = current_node["text"]
 		story_text.add_theme_color_override("default_color", Color.RED)
 		if illustration:
