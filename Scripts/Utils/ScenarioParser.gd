@@ -222,7 +222,7 @@ func creer_bouton_choix(opt: Dictionary):
 
 func _on_choice_made(opt: Dictionary):
 	if opt.has("is_end_button") and opt["is_end_button"] == true:
-		get_tree().change_scene_to_file("res://Scenes/Core/Bilan.tscn")
+		get_tree().change_scene_to_file("res://Scenes/Core/bilan.tscn")
 		return
 
 	step_counter += 1
