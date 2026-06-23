@@ -12,7 +12,7 @@ var step_counter: int = 0
 
 # Personnage Artiste
 @onready var scene_idle = $MainLayout/LeftPanel_Perso/Node2D
-@onready var scene_arms = $MainLayout/LeftPanel_Perso/Node2D2
+@onready var scene_arms = $MainLayout/LeftPanel_Perso/Node2D3_Artiste
 
 # Personnage Ingénieur
 @onready var scene_ingenieur = $MainLayout/LeftPanel_Perso/Node2D_Ingenieur

@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://0tdfbjmoyrex"]
 
-[ext_resource type="Script" uid="uid://clc3i6rh2nkhg" path="res://Scripts/Utils/ScenarioParser.gd" id="1_xnajp"]
 [ext_resource type="Texture2D" uid="uid://bxodmortvbhxr" path="res://_Assets/Images/backgrounds/background_sci_fi.png" id="2_6ywjb"]
-[ext_resource type="PackedScene" uid="uid://cqd2njmmyes5n" path="res://Scenes/Core/arms_cross_artiste.tscn" id="3_0rlx3"]
+[ext_resource type="PackedScene" uid="uid://18e34br6ulee" path="res://Scenes/Core/arms_cross_artiste.tscn" id="3_0rlx3"]
 
 [node name="Control" type="Control" unique_id=21478466]
 layout_mode = 3
@@ -13,7 +12,6 @@ offset_top = 75.0
 offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_xnajp")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1402341768]
 layout_mode = 1
@@ -45,6 +43,7 @@ size_flags_horizontal = 3
 
 [node name="Node2D" parent="MainLayout/LeftPanel_Perso" unique_id=1972595146 instance=ExtResource("3_0rlx3")]
 position = Vector2(534, 671)
+script = null
 
 [node name="CenterPanel_Story" type="VBoxContainer" parent="MainLayout" unique_id=1737113999]
 layout_mode = 2

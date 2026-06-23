@@ -136,6 +136,7 @@ offset_left = 263.0
 offset_top = 769.0
 offset_right = 538.0
 offset_bottom = 846.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_e40r0")
 text = "INGENIEUR"
 
 [node name="ConsultantName" type="Button" parent="." unique_id=34089446]
@@ -144,4 +145,5 @@ offset_left = 1360.0
 offset_top = 771.0
 offset_right = 1639.0
 offset_bottom = 850.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_e40r0")
 text = "CONSULTANT"
